@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>RD Quarters</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background:
+        radial-gradient(circle at top, #2b210d 0%, #0d0d0d 38%, #000 100%);
+      color: #f4ead2;
+      font-family: Georgia, "Times New Roman", serif;
+      min-height: 100vh;
+    }
+
+    header {
+      text-align: center;
+      padding: 70px 20px 45px;
+      border-bottom: 1px solid #8b6a25;
+    }
+
+    .symbol {
+      font-size: 42px;
+      color: #d7ad4b;
+      margin-bottom: 15px;
+    }
+
+    h1 {
+      color: #d7ad4b;
+      font-size: clamp(42px, 12vw, 78px);
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+
+    .tagline {
+      max-width: 700px;
+      margin: 18px auto 0;
+      color: #d8c9a5;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 24px 15px;
+      border-bottom: 1px solid #4d3b19;
+      background: rgba(0, 0, 0, 0.65);
+    }
+
+    nav a {
+      color: #f4ead2;
+      text-decoration: none;
+      border: 1px solid #9c772e;
+      padding: 11px 16px;
+      border-radius: 30px;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      background: #d7ad4b;
+      color: #000;
+    }
+
+    main {
+      width: min(1100px, 92%);
+      margin: 45px auto 70px;
+    }
+
+    .intro {
+      text-align: center;
+      margin-bottom: 45px;
+    }
+
+    .intro h2 {
+      color: #d7ad4b;
+      font-size: 32px;
+      margin-bottom: 14px;
+    }
+
+    .intro p {
+      max-width: 760px;
+      margin: auto;
+      color: #d8c9a5;
+      line-height: 1.7;
+      font-size: 17px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
+      gap: 22px;
+    }
+
+    .card {
+      min-height: 230px;
+      padding: 28px;
+      border: 1px solid #8b6a25;
+      border-radius: 14px;
+      background:
+        linear-gradient(
+          145deg,
+          rgba(45, 34, 13, 0.85),
+          rgba(8, 8, 8, 0.96)
+        );
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+    }
+
+    .card-number {
+      color: #8f7134;
+      font-size: 13px;
+      letter-spacing: 2px;
+    }
+
+    .card h3 {
+      color: #d7ad4b;
+      font-size: 25px;
+      margin: 14px 0;
+    }
+
+    .card p {
+      color: #d8c9a5;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .button {
+      display: inline-block;
+      color: #000;
+      background: #d7ad4b;
+      text-decoration: none;
+      padding: 11px 17px;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+
+    .button:hover {
+      background: #f2d27a;
+    }
+
+    .featured {
+      margin-top: 50px;
+      padding: 35px 25px;
+      text-align: center;
+      border-top: 1px solid #8b6a25;
+      border-bottom: 1px solid #8b6a25;
+    }
+
+    .featured h2 {
+      color: #d7ad4b;
+      font-size: 31px;
+      margin-bottom: 15px;
+    }
+
+    .featured p {
+      max-width: 750px;
+      margin: auto;
+      color: #d8c9a5;
+      line-height: 1.7;
+    }
+
+    footer {
+      text-align: center;
+      padding: 32px 15px;
+      color: #927e52;
+      border-top: 1px solid #4d3b19;
+      font-size: 14px;
+    }
+
+    .rd {
+      color: #d7ad4b;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="symbol">◉</div>
+
+    <h1>RD Quarters</h1>
+
+    <p class="tagline">
+      Books, art, apparel, hidden history and original ideas
+      created from Hudson, New York.
+    </p>
+  </header>
+
+  <nav>
+    <a href="#books">Books</a>
+    <a href="#what-if">What If Art</a>
+    <a href="#apparel">Apparel</a>
+    <a href="#hudson">Hudson Classics</a>
+    <a href="#thoth">Library of Thoth</a>
+  </nav>
+
+  <main>
+
+    <section class="intro">
+      <h2>Welcome to the World of RD Quarters</h2>
+
+      <p>
+        This is the central home for the writing, artwork,
+        symbolism, clothing and evolving creative projects of
+        RD Quarters.
+      </p>
+    </section>
+
+    <section class="grid">
+
+      <article class="card" id="books">
+        <div class="card-number">COLLECTION 01</div>
+        <h3>Books</h3>
+
+        <p>
+          Explore fiction, cultural commentary, philosophy and
+          original works written under the name RD Quarters.
+        </p>
+
+        <a class="button" href="#">Coming Soon</a>
+      </article>
+
+      <article class="card" id="what-if">
+        <div class="card-number">COLLECTION 02</div>
+        <h3>What If Art</h3>
+
+        <p>
+          A numbered anthology combining wordplay, symbolism,
+          philosophy and visual storytelling.
+        </p>
+
+        <a class="button" href="#">Enter Gallery</a>
+      </article>
+
+      <article class="card" id="apparel">
+        <div class="card-number">COLLECTION 03</div>
+        <h3>Apparel</h3>
+
+        <p>
+          Limited designs based on RD Quarters artwork,
+          numbered series and original concepts.
+        </p>
+
+        <a class="button" href="#">View Apparel</a>
+      </article>
+
+      <article class="card" id="hudson">
+        <div class="card-number">COLLECTION 04</div>
+        <h3>Hudson Classics</h3>
+
+        <p>
+          A tribute to the businesses, landmarks and neighborhood
+          memories that shaped Hudson, New York.
+        </p>
+
+        <a class="button" href="#">Discover Hudson</a>
+      </article>
+
+      <article class="card" id="thoth">
+        <div class="card-number">COLLECTION 05</div>
+        <h3>Library of Thoth</h3>
+
+        <p>
+          A hidden archive of Hermetic thought, sacred symbolism,
+          ancient mysteries and deeper meanings behind the art.
+        </p>
+
+        <a class="button" href="#">Enter the Library</a>
+      </article>
+
+    </section>
+
+    <section class="featured">
+      <h2>More Than One Medium</h2>
+
+      <p>
+        RD Quarters connects books, visual art, local history,
+        apparel and symbolic storytelling into one growing body
+        of work.
+      </p>
+    </section>
+
+  </main>
+
+  <footer>
+    <span class="rd">RD</span><br><br>
+    © 2026 RD Quarters. All rights reserved.
+  </footer>
+
+</body>
+</html>
