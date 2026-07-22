@@ -13,7 +13,7 @@
     content="noindex, nofollow"
   >
 
-  <title>Current Strains | RD Quarters</title>
+  <title>Jelly Donut Strain Profile | RD Quarters</title>
 
   <style>
     :root {
@@ -45,7 +45,6 @@
       color: var(--cream);
       font-family: Georgia, "Times New Roman", serif;
       line-height: 1.65;
-      min-height: 100vh;
     }
 
     a {
@@ -77,7 +76,7 @@
       letter-spacing: 0.18em;
     }
 
-    .home-link {
+    .return-link {
       border: 1px solid var(--border);
       border-radius: 999px;
       padding: 8px 14px;
@@ -91,7 +90,7 @@
     }
 
     .eyebrow,
-    .card-label {
+    .section-label {
       color: var(--gold);
       text-transform: uppercase;
       letter-spacing: 0.25em;
@@ -100,7 +99,7 @@
 
     h1 {
       color: var(--light-gold);
-      font-size: clamp(2.8rem, 10vw, 5.5rem);
+      font-size: clamp(3rem, 11vw, 6rem);
       line-height: 1;
       margin: 16px 0 22px;
     }
@@ -118,27 +117,7 @@
       padding: 55px 24px 80px;
     }
 
-    .section-title {
-      color: var(--light-gold);
-      font-size: clamp(2rem, 7vw, 3.4rem);
-      line-height: 1.1;
-      margin-bottom: 14px;
-    }
-
-    .section-intro {
-      color: var(--muted);
-      max-width: 720px;
-      margin-bottom: 34px;
-    }
-
-    .strain-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 22px;
-    }
-
-    .strain-card {
-      display: block;
+    .profile-card {
       border: 1px solid var(--border);
       border-radius: 26px;
 
@@ -150,21 +129,13 @@
         ),
         var(--panel);
 
-      padding: 30px;
-      transition:
-        transform 0.2s ease,
-        border-color 0.2s ease;
-    }
-
-    .strain-card:hover {
-      transform: translateY(-3px);
-      border-color: var(--gold);
+      padding: 34px;
     }
 
     .strain-name {
       color: var(--light-gold);
-      font-size: 2.2rem;
-      line-height: 1.1;
+      font-size: clamp(2.3rem, 8vw, 4rem);
+      line-height: 1;
       margin: 12px 0 14px;
     }
 
@@ -172,32 +143,81 @@
       display: inline-block;
       border: 1px solid var(--border);
       border-radius: 999px;
-      padding: 7px 13px;
+      padding: 8px 14px;
       color: var(--gold);
-      margin-bottom: 20px;
-      font-size: 0.9rem;
+      margin-bottom: 28px;
     }
 
-    .strain-description {
+    .intro {
       color: var(--muted);
-      margin-bottom: 24px;
+      margin-bottom: 34px;
+      font-size: 1.05rem;
     }
 
-    .profile-button {
-      display: inline-block;
-      background: var(--gold);
-      color: #090805;
-      padding: 11px 17px;
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .field {
+      border-top: 1px solid rgba(221, 178, 76, 0.3);
+      padding-top: 18px;
+    }
+
+    .field h2 {
+      color: var(--gold);
+      font-size: 0.8rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 7px;
+    }
+
+    .effects-section,
+    .terpene-section,
+    .experience-section {
+      margin-top: 34px;
+      padding-top: 25px;
+      border-top: 1px solid var(--border);
+    }
+
+    .effects-section h2,
+    .terpene-section h2,
+    .experience-section h2 {
+      color: var(--light-gold);
+      margin-bottom: 15px;
+      font-size: 1.7rem;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tag {
+      border: 1px solid var(--border);
       border-radius: 999px;
-      font-weight: bold;
+      padding: 9px 13px;
     }
 
-    .information-note {
-      margin-top: 40px;
-      border-left: 3px solid var(--gold);
-      padding-left: 16px;
+    .experience-card {
+      padding: 24px;
+      background: var(--dark);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+    }
+
+    .experience-card p + p {
+      margin-top: 15px;
+    }
+
+    .source-note {
+      margin-top: 30px;
       color: var(--muted);
       font-size: 0.92rem;
+      border-left: 3px solid var(--gold);
+      padding-left: 15px;
     }
 
     footer {
@@ -215,11 +235,11 @@
     }
 
     @media (max-width: 700px) {
-      .strain-grid {
+      .grid {
         grid-template-columns: 1fr;
       }
 
-      .strain-card {
+      .profile-card {
         padding: 25px;
       }
     }
@@ -236,10 +256,10 @@
       </div>
 
       <a
-        class="home-link"
-        href="index.html"
+        class="return-link"
+        href="../current-strain.html"
       >
-        Return Home
+        Current Strains
       </a>
 
     </div>
@@ -248,72 +268,185 @@
   <section class="hero">
 
     <p class="eyebrow">
-      Educational Strain Library
+      Educational Strain Profile
     </p>
 
     <h1>
-      Current Strains
+      Jelly Donut
     </h1>
 
     <p class="hero-description">
-      Explore general educational profiles for the strains
-      currently being featured. Each profile includes commonly
-      reported lineage, aroma, flavor and experience information.
+      A general educational guide to the commonly reported
+      lineage, aroma, flavor and experience of Jelly Donut.
     </p>
 
   </section>
 
   <main>
 
-    <h2 class="section-title">
-      Active Profiles
-    </h2>
+    <article class="profile-card">
 
-    <p class="section-intro">
-      Select a strain to open its permanent informational page.
-      New profiles can be added here without changing the QR code.
-    </p>
+      <p class="section-label">
+        Featured Profile
+      </p>
 
-    <section class="strain-grid">
+      <h2 class="strain-name">
+        Jelly Donut
+      </h2>
 
-      <a
-        class="strain-card"
-        href="strains/moon-cookies.html"
-      >
+      <div class="strain-type">
+        Indica-Dominant Hybrid
+      </div>
 
-        <p class="card-label">
-          Current Profile 01
-        </p>
+      <p class="intro">
+        Jelly Donut is commonly described as a dessert-style
+        hybrid combining fruity sweetness, dough-like flavor
+        and a relaxing character that may become heavier
+        as the experience develops.
+      </p>
 
-        <h3 class="strain-name">
-          Moon Cookies
-        </h3>
+      <div class="grid">
 
-        <div class="strain-type">
-          Indica-Dominant Hybrid
+        <div class="field">
+          <h2>Commonly Reported Lineage</h2>
+
+          <p>
+            Purple Punch × French Toast.
+          </p>
         </div>
 
-        <p class="strain-description">
-          A Cookies-family cultivar commonly associated with
-          sweet, earthy notes and a gradual progression from an
-          uplifting mental character into deeper physical relaxation.
+        <div class="field">
+          <h2>General Classification</h2>
+
+          <p>
+            Commonly categorized as an indica-dominant hybrid.
+          </p>
+        </div>
+
+        <div class="field">
+          <h2>Aroma</h2>
+
+          <p>
+            Sour berry, grape, sweet dough, sage and
+            earthy or herbal notes.
+          </p>
+        </div>
+
+        <div class="field">
+          <h2>Flavor</h2>
+
+          <p>
+            Sweet and doughy with berry, grape, citrus
+            and lightly herbal qualities.
+          </p>
+        </div>
+
+      </div>
+
+      <section class="effects-section">
+
+        <h2>
+          Commonly Reported Effects
+        </h2>
+
+        <div class="tag-list">
+
+          <span class="tag">
+            Relaxing
+          </span>
+
+          <span class="tag">
+            Euphoric
+          </span>
+
+          <span class="tag">
+            Giggly
+          </span>
+
+          <span class="tag">
+            Hungry
+          </span>
+
+          <span class="tag">
+            Potentially Sleepy
+          </span>
+
+        </div>
+
+      </section>
+
+      <section class="terpene-section">
+
+        <h2>
+          Terpene Tendencies
+        </h2>
+
+        <p class="intro">
+          Without laboratory testing, an exact terpene profile
+          cannot be confirmed. Published descriptions commonly
+          associate Jelly Donut with combinations of pinene,
+          caryophyllene and myrcene. The actual balance may vary
+          by grower, phenotype and harvest.
         </p>
 
-        <span class="profile-button">
-          View Strain Profile
-        </span>
+        <div class="tag-list">
 
-      </a>
+          <span class="tag">
+            Pinene
+          </span>
 
-    </section>
+          <span class="tag">
+            Caryophyllene
+          </span>
 
-    <p class="information-note">
-      These pages provide general educational strain information.
-      Characteristics may vary by breeder, grower, phenotype,
-      cultivation method and individual experience. No pricing,
-      ordering, availability, payment, delivery or purchasing
-      instructions are provided.
-    </p>
+          <span class="tag">
+            Myrcene
+          </span>
+
+        </div>
+
+      </section>
+
+      <section class="experience-section">
+
+        <h2>
+          Experience Notes
+        </h2>
+
+        <div class="experience-card">
+
+          <p>
+            Jelly Donut is commonly associated with a cheerful
+            or euphoric beginning followed by increasing
+            physical relaxation.
+          </p>
+
+          <p>
+            Some users describe appetite stimulation,
+            laughter and sleepiness, making it commonly
+            associated with later-day or evening settings.
+          </p>
+
+          <p>
+            Individual experiences may differ based on tolerance,
+            amount used, product form, cultivation method
+            and personal response.
+          </p>
+
+        </div>
+
+      </section>
+
+      <p class="source-note">
+        This page provides general educational information based
+        on commonly published strain descriptions. Strain names
+        do not always represent identical genetics across every
+        breeder or cultivator. This page does not display pricing,
+        ordering, availability, payment, delivery or purchasing
+        instructions.
+      </p>
+
+    </article>
 
   </main>
 
@@ -324,7 +457,7 @@
     </div>
 
     <p>
-      Current Strains · RD Quarters · Hudson, New York
+      Jelly Donut Profile · RD Quarters · Hudson, New York
     </p>
 
     <p>
