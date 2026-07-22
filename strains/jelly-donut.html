@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="robots"
+    content="noindex, nofollow"
+  >
+
+  <title>Current Strains | RD Quarters</title>
+
+  <style>
+    :root {
+      --black: #070706;
+      --dark: #121009;
+      --panel: #19150d;
+      --gold: #ddb24c;
+      --light-gold: #f2d487;
+      --cream: #f3e7c9;
+      --muted: #baab88;
+      --border: rgba(221, 178, 76, 0.55);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background:
+        radial-gradient(
+          circle at top,
+          rgba(221, 178, 76, 0.13),
+          transparent 34rem
+        ),
+        var(--black);
+
+      color: var(--cream);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.65;
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(7, 7, 6, 0.96);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      max-width: 1000px;
+      margin: auto;
+      padding: 15px 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand {
+      color: var(--gold);
+      font-weight: bold;
+      letter-spacing: 0.18em;
+    }
+
+    .home-link {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-size: 0.9rem;
+    }
+
+    .hero {
+      padding: 85px 24px 55px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .eyebrow,
+    .card-label {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      font-size: 0.76rem;
+    }
+
+    h1 {
+      color: var(--light-gold);
+      font-size: clamp(2.8rem, 10vw, 5.5rem);
+      line-height: 1;
+      margin: 16px 0 22px;
+    }
+
+    .hero-description {
+      max-width: 720px;
+      margin: auto;
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: auto;
+      padding: 55px 24px 80px;
+    }
+
+    .section-title {
+      color: var(--light-gold);
+      font-size: clamp(2rem, 7vw, 3.4rem);
+      line-height: 1.1;
+      margin-bottom: 14px;
+    }
+
+    .section-intro {
+      color: var(--muted);
+      max-width: 720px;
+      margin-bottom: 34px;
+    }
+
+    .strain-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+
+    .strain-card {
+      display: block;
+      border: 1px solid var(--border);
+      border-radius: 26px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(221, 178, 76, 0.08),
+          transparent 48%
+        ),
+        var(--panel);
+
+      padding: 30px;
+      transition:
+        transform 0.2s ease,
+        border-color 0.2s ease;
+    }
+
+    .strain-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--gold);
+    }
+
+    .strain-name {
+      color: var(--light-gold);
+      font-size: 2.2rem;
+      line-height: 1.1;
+      margin: 12px 0 14px;
+    }
+
+    .strain-type {
+      display: inline-block;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 7px 13px;
+      color: var(--gold);
+      margin-bottom: 20px;
+      font-size: 0.9rem;
+    }
+
+    .strain-description {
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    .profile-button {
+      display: inline-block;
+      background: var(--gold);
+      color: #090805;
+      padding: 11px 17px;
+      border-radius: 999px;
+      font-weight: bold;
+    }
+
+    .information-note {
+      margin-top: 40px;
+      border-left: 3px solid var(--gold);
+      padding-left: 16px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    footer {
+      text-align: center;
+      border-top: 1px solid var(--border);
+      padding: 38px 20px 50px;
+      color: var(--muted);
+    }
+
+    .rd {
+      color: var(--gold);
+      font-size: 1.8rem;
+      font-weight: bold;
+      letter-spacing: 0.22em;
+    }
+
+    @media (max-width: 700px) {
+      .strain-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .strain-card {
+        padding: 25px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+
+      <div class="brand">
+        RD QUARTERS
+      </div>
+
+      <a
+        class="home-link"
+        href="index.html"
+      >
+        Return Home
+      </a>
+
+    </div>
+  </header>
+
+  <section class="hero">
+
+    <p class="eyebrow">
+      Educational Strain Library
+    </p>
+
+    <h1>
+      Current Strains
+    </h1>
+
+    <p class="hero-description">
+      Explore general educational profiles for the strains
+      currently being featured. Each profile includes commonly
+      reported lineage, aroma, flavor and experience information.
+    </p>
+
+  </section>
+
+  <main>
+
+    <h2 class="section-title">
+      Active Profiles
+    </h2>
+
+    <p class="section-intro">
+      Select a strain to open its permanent informational page.
+      New profiles can be added here without changing the QR code.
+    </p>
+
+    <section class="strain-grid">
+
+      <a
+        class="strain-card"
+        href="strains/moon-cookies.html"
+      >
+
+        <p class="card-label">
+          Current Profile 01
+        </p>
+
+        <h3 class="strain-name">
+          Moon Cookies
+        </h3>
+
+        <div class="strain-type">
+          Indica-Dominant Hybrid
+        </div>
+
+        <p class="strain-description">
+          A Cookies-family cultivar commonly associated with
+          sweet, earthy notes and a gradual progression from an
+          uplifting mental character into deeper physical relaxation.
+        </p>
+
+        <span class="profile-button">
+          View Strain Profile
+        </span>
+
+      </a>
+
+    </section>
+
+    <p class="information-note">
+      These pages provide general educational strain information.
+      Characteristics may vary by breeder, grower, phenotype,
+      cultivation method and individual experience. No pricing,
+      ordering, availability, payment, delivery or purchasing
+      instructions are provided.
+    </p>
+
+  </main>
+
+  <footer>
+
+    <div class="rd">
+      RD
+    </div>
+
+    <p>
+      Current Strains · RD Quarters · Hudson, New York
+    </p>
+
+    <p>
+      © 2026 RD Quarters. All rights reserved.
+    </p>
+
+  </footer>
+
+</body>
+</html>
