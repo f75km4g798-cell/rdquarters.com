@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Current Strain Profile | RD Quarters</title>
+
+  <style>
+    :root {
+      --black: #070706;
+      --dark: #121009;
+      --panel: #19150d;
+      --gold: #ddb24c;
+      --light-gold: #f2d487;
+      --cream: #f3e7c9;
+      --muted: #baab88;
+      --border: rgba(221, 178, 76, 0.55);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background:
+        radial-gradient(
+          circle at top,
+          rgba(221, 178, 76, 0.13),
+          transparent 34rem
+        ),
+        var(--black);
+
+      color: var(--cream);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.65;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(7, 7, 6, 0.96);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      max-width: 1000px;
+      margin: auto;
+      padding: 15px 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand {
+      color: var(--gold);
+      font-weight: bold;
+      letter-spacing: 0.18em;
+    }
+
+    .home-link {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-size: 0.9rem;
+    }
+
+    .hero {
+      padding: 85px 24px 55px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .eyebrow,
+    .section-label {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      font-size: 0.76rem;
+    }
+
+    h1 {
+      color: var(--light-gold);
+      font-size: clamp(2.8rem, 10vw, 5.5rem);
+      line-height: 1;
+      margin: 16px 0 22px;
+    }
+
+    .hero-description {
+      max-width: 720px;
+      margin: auto;
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: auto;
+      padding: 55px 24px 80px;
+    }
+
+    .profile-card {
+      border: 1px solid var(--border);
+      border-radius: 26px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(221, 178, 76, 0.08),
+          transparent 48%
+        ),
+        var(--panel);
+
+      padding: 34px;
+    }
+
+    .strain-name {
+      color: var(--light-gold);
+      font-size: clamp(2.2rem, 8vw, 4rem);
+      line-height: 1;
+      margin: 12px 0 14px;
+    }
+
+    .strain-type {
+      display: inline-block;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 8px 14px;
+      color: var(--gold);
+      margin-bottom: 28px;
+    }
+
+    .intro {
+      color: var(--muted);
+      margin-bottom: 34px;
+      font-size: 1.05rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .field {
+      border-top: 1px solid rgba(221, 178, 76, 0.3);
+      padding-top: 18px;
+    }
+
+    .field h2 {
+      color: var(--gold);
+      font-size: 0.8rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 7px;
+    }
+
+    .field p {
+      color: var(--cream);
+    }
+
+    .effects-section,
+    .terpene-section,
+    .experience-section {
+      margin-top: 34px;
+      padding-top: 25px;
+      border-top: 1px solid var(--border);
+    }
+
+    .effects-section h2,
+    .terpene-section h2,
+    .experience-section h2 {
+      color: var(--light-gold);
+      margin-bottom: 15px;
+      font-size: 1.7rem;
+    }
+
+    .effect-list,
+    .terpene-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tag {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 9px 13px;
+      color: var(--cream);
+    }
+
+    .experience-card {
+      padding: 24px;
+      background: var(--dark);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+    }
+
+    .experience-card p + p {
+      margin-top: 15px;
+    }
+
+    .source-note {
+      margin-top: 30px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      border-left: 3px solid var(--gold);
+      padding-left: 15px;
+    }
+
+    footer {
+      text-align: center;
+      border-top: 1px solid var(--border);
+      padding: 38px 20px 50px;
+      color: var(--muted);
+    }
+
+    .rd {
+      color: var(--gold);
+      font-size: 1.8rem;
+      font-weight: bold;
+      letter-spacing: 0.22em;
+    }
+
+    @media (max-width: 700px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .profile-card {
+        padding: 25px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+
+      <div class="brand">
+        RD QUARTERS
+      </div>
+
+      <a
+        class="home-link"
+        href="index.html"
+      >
+        Return Home
+      </a>
+
+    </div>
+  </header>
+
+  <section class="hero">
+
+    <p class="eyebrow">
+      Educational Strain Information
+    </p>
+
+    <h1>
+      Current Strain Profile
+    </h1>
+
+    <p class="hero-description">
+      A frequently updated educational guide exploring the
+      lineage, aroma, flavor and commonly reported experience
+      of the currently featured strain.
+    </p>
+
+  </section>
+
+  <main>
+
+    <article class="profile-card">
+
+      <p class="section-label">
+        Featured Profile
+      </p>
+
+      <h2 class="strain-name">
+        Moon Cookies
+      </h2>
+
+      <div class="strain-type">
+        Indica-Dominant Hybrid
+      </div>
+
+      <p class="intro">
+        Moon Cookies is commonly described as a Cookies-family
+        cultivar known for a rich dessert-like character and an
+        experience that may begin mentally uplifting before
+        gradually becoming more physically relaxing.
+      </p>
+
+      <div class="grid">
+
+        <div class="field">
+          <h2>Commonly Reported Lineage</h2>
+
+          <p>
+            Often described as a Girl Scout Cookies backcross.
+            Genetics may vary between breeders and cultivators.
+          </p>
+        </div>
+
+        <div class="field">
+          <h2>General Classification</h2>
+
+          <p>
+            Commonly categorized as an indica-dominant hybrid.
+          </p>
+        </div>
+
+        <div class="field">
+          <h2>Aroma</h2>
+
+          <p>
+            Sweet dough, earth, citrus, berry and subtle
+            skunky or forest-like notes.
+          </p>
+        </div>
+
+        <div class="field">
+          <h2>Flavor</h2>
+
+          <p>
+            Sweet and earthy with cookie-like, citrus,
+            berry and lightly sour notes.
+          </p>
+        </div>
+
+      </div>
+
+      <section class="effects-section">
+
+        <h2>
+          Commonly Reported Effects
+        </h2>
+
+        <div class="effect-list">
+
+          <span class="tag">
+            Uplifting
+          </span>
+
+          <span class="tag">
+            Euphoric
+          </span>
+
+          <span class="tag">
+            Mentally Engaging
+          </span>
+
+          <span class="tag">
+            Physically Relaxing
+          </span>
+
+          <span class="tag">
+            Potentially Sedating
+          </span>
+
+        </div>
+
+      </section>
+
+      <section class="terpene-section">
+
+        <h2>
+          Terpene Tendencies
+        </h2>
+
+        <p class="intro">
+          Without a laboratory report, no exact terpene profile
+          can be confirmed. Cookies-family cultivars are often
+          associated with combinations of caryophyllene,
+          limonene and myrcene, but the actual balance may vary
+          considerably between growers, phenotypes and harvests.
+        </p>
+
+        <div class="terpene-list">
+
+          <span class="tag">
+            Caryophyllene
+          </span>
+
+          <span class="tag">
+            Limonene
+          </span>
+
+          <span class="tag">
+            Myrcene
+          </span>
+
+        </div>
+
+      </section>
+
+      <section class="experience-section">
+
+        <h2>
+          Experience Notes
+        </h2>
+
+        <div class="experience-card">
+
+          <p>
+            Moon Cookies is commonly described as beginning with
+            an uplifting or euphoric mental character before its
+            heavier physical qualities become more noticeable.
+          </p>
+
+          <p>
+            Because the relaxing qualities may increase over
+            time, many descriptions associate it with later-day
+            or evening settings.
+          </p>
+
+          <p>
+            Individual experience may differ based on personal
+            tolerance, amount used, cultivation method,
+            phenotype and product form.
+          </p>
+
+        </div>
+
+      </section>
+
+      <p class="source-note">
+        This page provides general educational information based
+        on commonly published strain descriptions. Strain names
+        do not always represent identical genetics across every
+        breeder or cultivator. This page does not display pricing,
+        ordering, availability, payment, delivery or purchasing
+        instructions.
+      </p>
+
+    </article>
+
+  </main>
+
+  <footer>
+
+    <div class="rd">
+      RD
+    </div>
+
+    <p>
+      Current Strain Profile · RD Quarters · Hudson, New York
+    </p>
+
+    <p>
+      © 2026 RD Quarters. All rights reserved.
+    </p>
+
+  </footer>
+
+</body>
+</html>
