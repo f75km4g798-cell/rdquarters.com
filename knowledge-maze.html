@@ -2,30 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
-  <meta
-    name="robots"
-    content="noindex, nofollow"
-  >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
 
   <title>Knowledge Maze | RD Quarters</title>
 
   <style>
     :root {
-      --black: #050504;
-      --dark: #100e09;
+      --black: #060605;
       --panel: #19150d;
       --gold: #ddb24c;
-      --light-gold: #f2d487;
+      --light: #f2d487;
       --cream: #f3e7c9;
-      --muted: #a99b7c;
+      --muted: #aa9b7c;
       --border: rgba(221, 178, 76, 0.5);
-      --dim-border: rgba(221, 178, 76, 0.22);
     }
 
     * {
@@ -35,19 +25,13 @@
     }
 
     body {
-      min-height: 100vh;
-
       background:
-        radial-gradient(
-          circle at 50% 10%,
-          rgba(221, 178, 76, 0.14),
-          transparent 30rem
-        ),
+        radial-gradient(circle at top, rgba(221,178,76,.14), transparent 32rem),
         var(--black);
-
       color: var(--cream);
       font-family: Georgia, "Times New Roman", serif;
-      line-height: 1.65;
+      line-height: 1.6;
+      min-height: 100vh;
     }
 
     a {
@@ -55,199 +39,394 @@
       text-decoration: none;
     }
 
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      background: rgba(5, 5, 4, 0.96);
+    header {
+      background: rgba(6,6,5,.96);
       border-bottom: 1px solid var(--border);
-    }
-
-    .header-inner {
-      max-width: 1100px;
-      margin: auto;
       padding: 16px 22px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 16px;
     }
 
     .brand {
       color: var(--gold);
       font-weight: bold;
-      letter-spacing: 0.18em;
+      letter-spacing: .18em;
     }
 
-    .return-link {
+    .home {
       border: 1px solid var(--border);
       border-radius: 999px;
       padding: 8px 14px;
-      font-size: 0.9rem;
     }
 
     .hero {
-      padding: 80px 24px 55px;
       text-align: center;
+      padding: 75px 24px 50px;
       border-bottom: 1px solid var(--border);
     }
 
-    .eyebrow,
-    .section-label {
+    .label {
       color: var(--gold);
       text-transform: uppercase;
-      letter-spacing: 0.26em;
-      font-size: 0.76rem;
+      letter-spacing: .24em;
+      font-size: .75rem;
     }
 
     h1 {
-      color: var(--light-gold);
-      font-size: clamp(3rem, 11vw, 6rem);
-      line-height: 0.96;
-      margin: 18px 0 24px;
+      color: var(--light);
+      font-size: clamp(3rem, 11vw, 5.5rem);
+      line-height: 1;
+      margin: 16px 0 22px;
     }
 
-    .hero-description {
-      max-width: 760px;
+    .hero p:last-child {
+      max-width: 720px;
       margin: auto;
       color: var(--muted);
-      font-size: 1.06rem;
     }
 
     main {
-      width: min(1100px, calc(100% - 40px));
+      max-width: 1000px;
       margin: auto;
-      padding: 55px 0 85px;
+      padding: 45px 22px 80px;
     }
 
-    .status-panel {
+    .panel {
+      background: var(--panel);
       border: 1px solid var(--border);
       border-radius: 24px;
-
-      background:
-        linear-gradient(
-          145deg,
-          rgba(221, 178, 76, 0.08),
-          transparent 55%
-        ),
-        var(--panel);
-
-      padding: 28px;
-      margin-bottom: 34px;
+      padding: 26px;
+      margin-bottom: 28px;
     }
 
-    .status-title {
-      color: var(--light-gold);
-      font-size: 1.7rem;
-      margin: 9px 0 20px;
+    h2 {
+      color: var(--light);
+      margin: 8px 0 16px;
     }
 
-    .progress-track {
+    .progress {
       height: 14px;
-      background: #090805;
-      border: 1px solid var(--dim-border);
+      background: #080805;
+      border: 1px solid var(--border);
       border-radius: 999px;
       overflow: hidden;
     }
 
-    .progress-fill {
+    .progress div {
       width: 0%;
       height: 100%;
-      background: linear-gradient(
-        90deg,
-        #8e6a18,
-        var(--gold),
-        var(--light-gold)
-      );
+      background: var(--gold);
     }
 
-    .progress-row {
+    .progress-text {
       display: flex;
       justify-content: space-between;
-      gap: 14px;
-      margin-top: 10px;
       color: var(--muted);
-      font-size: 0.9rem;
+      margin-top: 10px;
+      font-size: .9rem;
     }
 
-    .maze-core {
+    .maze {
+      min-height: 520px;
       position: relative;
-      min-height: 470px;
-      border: 1px solid var(--border);
-      border-radius: 32px;
       background:
-        radial-gradient(
-          circle at center,
-          rgba(221, 178, 76, 0.12),
-          transparent 15rem
-        ),
+        radial-gradient(circle at center, rgba(221,178,76,.12), transparent 14rem),
         #090805;
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      margin-bottom: 30px;
       overflow: hidden;
-      margin-bottom: 34px;
     }
 
-    .maze-line {
-      position: absolute;
-      background: var(--dim-border);
-      transform-origin: left center;
-      height: 1px;
-    }
-
-    .line-one {
-      width: 32%;
-      left: 18%;
-      top: 33%;
-      transform: rotate(24deg);
-    }
-
-    .line-two {
-      width: 32%;
-      right: 18%;
-      top: 33%;
-      transform: rotate(-24deg);
-    }
-
-    .line-three {
-      width: 30%;
-      left: 20%;
-      bottom: 29%;
-      transform: rotate(-22deg);
-    }
-
-    .line-four {
-      width: 30%;
-      right: 20%;
-      bottom: 29%;
-      transform: rotate(22deg);
-    }
-
-    .brain-core {
+    .core {
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 170px;
-      height: 170px;
+      width: 155px;
+      height: 155px;
       transform: translate(-50%, -50%);
       border: 2px solid var(--gold);
       border-radius: 50%;
       display: grid;
       place-items: center;
       text-align: center;
-      box-shadow:
-        0 0 0 16px rgba(221, 178, 76, 0.04),
-        0 0 60px rgba(221, 178, 76, 0.12);
+      color: var(--light);
+      box-shadow: 0 0 45px rgba(221,178,76,.15);
     }
 
-    .brain-core strong {
-      display: block;
-      color: var(--light-gold);
-      font-size: 1.4rem;
-    }
-
-    .brain-core span {
+    .core small {
       display: block;
       color: var(--muted);
-      font-size: 0.8rem;
-      letter-spacing: 0.15em;
       text-transform: uppercase;
-      margin
+      letter-spacing: .12em;
+      margin-top: 5px;
+    }
+
+    .chamber {
+      position: absolute;
+      width: 145px;
+      min-height: 110px;
+      background: var(--panel);
+      border: 1px solid rgba(221,178,76,.25);
+      border-radius: 20px;
+      padding: 15px;
+      opacity: .65;
+    }
+
+    .chamber strong {
+      display: block;
+      color: var(--light);
+      margin-bottom: 5px;
+    }
+
+    .chamber span {
+      color: var(--muted);
+      font-size: .82rem;
+    }
+
+    .one { top: 35px; left: 25px; }
+    .two { top: 35px; right: 25px; }
+    .three { bottom: 35px; left: 25px; }
+    .four { bottom: 35px; right: 25px; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid rgba(221,178,76,.25);
+      border-radius: 20px;
+      padding: 22px;
+    }
+
+    .symbol {
+      width: 58px;
+      height: 58px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: var(--gold);
+      font-size: 1.4rem;
+      margin-bottom: 15px;
+    }
+
+    .card h3 {
+      color: var(--light);
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: .93rem;
+    }
+
+    .status {
+      display: inline-block;
+      margin-top: 15px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 6px 10px;
+      color: var(--gold);
+      font-size: .72rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+    }
+
+    .section {
+      margin-top: 38px;
+    }
+
+    .section-intro {
+      color: var(--muted);
+      margin-bottom: 22px;
+      max-width: 740px;
+    }
+
+    .note {
+      margin-top: 35px;
+      border-left: 3px solid var(--gold);
+      padding-left: 15px;
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--muted);
+      padding: 35px 20px 45px;
+    }
+
+    .rd {
+      color: var(--gold);
+      font-weight: bold;
+      font-size: 1.7rem;
+      letter-spacing: .2em;
+    }
+
+    @media (max-width: 700px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .maze {
+        min-height: 650px;
+      }
+
+      .chamber {
+        width: calc(50% - 38px);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="brand">RD QUARTERS</div>
+    <a class="home" href="index.html">Return Home</a>
+  </header>
+
+  <section class="hero">
+    <p class="label">Hidden Foundation</p>
+    <h1>The Knowledge Maze</h1>
+    <p>
+      Every artwork will eventually reveal knowledge, award a neural token
+      and illuminate a pathway through a larger living maze.
+    </p>
+  </section>
+
+  <main>
+
+    <section class="panel">
+      <p class="label">Traveler Status</p>
+      <h2>Illumination Progress</h2>
+
+      <div class="progress">
+        <div></div>
+      </div>
+
+      <div class="progress-text">
+        <span>0 pathways illuminated</span>
+        <span>0%</span>
+      </div>
+    </section>
+
+    <section class="maze">
+
+      <div class="core">
+        <div>
+          <strong>Dormant Core</strong>
+          <small>Awaiting illumination</small>
+        </div>
+      </div>
+
+      <div class="chamber one">
+        <strong>Focus</strong>
+        <span>Pathway undiscovered</span>
+      </div>
+
+      <div class="chamber two">
+        <strong>Memory</strong>
+        <span>Pathway undiscovered</span>
+      </div>
+
+      <div class="chamber three">
+        <strong>Emotion</strong>
+        <span>Pathway undiscovered</span>
+      </div>
+
+      <div class="chamber four">
+        <strong>Imagination</strong>
+        <span>Pathway undiscovered</span>
+      </div>
+
+    </section>
+
+    <section class="section">
+      <p class="label">Neural Inventory</p>
+      <h2>Tokens Awaiting Discovery</h2>
+
+      <p class="section-intro">
+        Each artwork will eventually award a symbolic object connected
+        to a neurotransmitter, brain pathway or cognitive function.
+      </p>
+
+      <div class="grid">
+
+        <article class="card">
+          <div class="symbol">Ⅰ</div>
+          <h3>Focus Token</h3>
+          <p>Attention, direction and sustained awareness.</p>
+          <span class="status">Undiscovered</span>
+        </article>
+
+        <article class="card">
+          <div class="symbol">Ⅱ</div>
+          <h3>Memory Token</h3>
+          <p>Recall, pattern recognition and stored experience.</p>
+          <span class="status">Undiscovered</span>
+        </article>
+
+        <article class="card">
+          <div class="symbol">Ⅲ</div>
+          <h3>Insight Token</h3>
+          <p>Imagination, revelation and sudden understanding.</p>
+          <span class="status">Undiscovered</span>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="section">
+      <p class="label">Artwork Portals</p>
+      <h2>Future Doorways</h2>
+
+      <p class="section-intro">
+        Each portal can later contain artwork, hidden knowledge,
+        a token reward, a maze chamber and the next unlocked route.
+      </p>
+
+      <div class="grid">
+
+        <article class="card">
+          <h3>Portal 001</h3>
+          <p>Artwork not yet assigned.</p>
+          <span class="status">Locked</span>
+        </article>
+
+        <article class="card">
+          <h3>Portal 002</h3>
+          <p>Knowledge remains concealed.</p>
+          <span class="status">Locked</span>
+        </article>
+
+        <article class="card">
+          <h3>Portal 003</h3>
+          <p>The next route has not been revealed.</p>
+          <span class="status">Locked</span>
+        </article>
+
+      </div>
+    </section>
+
+    <p class="note">
+      This foundation can later support collected tokens, illuminated
+      pathways, puzzles, branching choices, hidden lore and saved progress.
+    </p>
+
+  </main>
+
+  <footer>
+    <div class="rd">RD</div>
+    <p>The Knowledge Maze · RD Quarters</p>
+    <p>© 2026 RD Quarters. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
