@@ -13,17 +13,20 @@
     content="noindex, nofollow"
   >
 
-  <title>Current Strains | RD Quarters</title>
+  <title>Current Strain Profiles | RD Quarters</title>
 
   <style>
     :root {
-      --black: #070706;
+      --black: #050504;
       --panel: #19150d;
       --gold: #ddb24c;
-      --light-gold: #f2d487;
+      --light: #f2d487;
       --cream: #f3e7c9;
-      --muted: #baab88;
-      --border: rgba(221, 178, 76, 0.55);
+      --muted: #aa9b7c;
+      --pink: #e7a8b8;
+      --classic: #b58a52;
+      --border: rgba(221, 178, 76, 0.5);
+      --dim: rgba(221, 178, 76, 0.22);
     }
 
     * {
@@ -33,18 +36,19 @@
     }
 
     body {
+      min-height: 100vh;
+
       background:
         radial-gradient(
           circle at top,
-          rgba(221, 178, 76, 0.13),
-          transparent 34rem
+          rgba(221, 178, 76, 0.14),
+          transparent 32rem
         ),
         var(--black);
 
       color: var(--cream);
       font-family: Georgia, "Times New Roman", serif;
       line-height: 1.65;
-      min-height: 100vh;
     }
 
     a {
@@ -52,22 +56,14 @@
       text-decoration: none;
     }
 
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      background: rgba(7, 7, 6, 0.96);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .header-inner {
-      max-width: 1000px;
-      margin: auto;
-      padding: 15px 22px;
+    header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 16px;
+      gap: 14px;
+      padding: 16px 22px;
+      background: rgba(5, 5, 4, 0.97);
+      border-bottom: 1px solid var(--border);
     }
 
     .brand {
@@ -76,142 +72,238 @@
       letter-spacing: 0.18em;
     }
 
-    .home-link {
+    .home {
       border: 1px solid var(--border);
       border-radius: 999px;
       padding: 8px 14px;
-      font-size: 0.9rem;
     }
 
     .hero {
-      padding: 85px 24px 55px;
       text-align: center;
+      padding: 74px 22px 52px;
       border-bottom: 1px solid var(--border);
     }
 
-    .eyebrow,
-    .card-label {
+    .label {
       color: var(--gold);
       text-transform: uppercase;
-      letter-spacing: 0.25em;
-      font-size: 0.76rem;
+      letter-spacing: 0.23em;
+      font-size: 0.74rem;
     }
 
     h1 {
-      color: var(--light-gold);
-      font-size: clamp(2.8rem, 10vw, 5.5rem);
+      color: var(--light);
+      font-size: clamp(3rem, 11vw, 5.8rem);
       line-height: 1;
       margin: 16px 0 22px;
     }
 
     .hero-description {
-      max-width: 720px;
+      max-width: 770px;
       margin: auto;
       color: var(--muted);
-      font-size: 1.08rem;
     }
 
     main {
-      max-width: 1000px;
+      width: min(1050px, calc(100% - 40px));
       margin: auto;
-      padding: 55px 24px 80px;
+      padding: 46px 0 82px;
     }
 
-    .section-title {
-      color: var(--light-gold);
-      font-size: clamp(2rem, 7vw, 3.4rem);
-      line-height: 1.1;
-      margin-bottom: 14px;
-    }
-
-    .section-intro {
-      color: var(--muted);
-      max-width: 720px;
-      margin-bottom: 34px;
-    }
-
-    .strain-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 22px;
-    }
-
-    .strain-card {
-      display: block;
-      border: 1px solid var(--border);
-      border-radius: 26px;
-
+    .notice,
+    .grade-key,
+    .card {
       background:
         linear-gradient(
           145deg,
           rgba(221, 178, 76, 0.08),
-          transparent 48%
+          transparent 55%
         ),
         var(--panel);
 
-      padding: 30px;
-    }
-
-    .strain-name {
-      color: var(--light-gold);
-      font-size: 2.2rem;
-      line-height: 1.1;
-      margin: 12px 0 14px;
-    }
-
-    .strain-type {
-      display: inline-block;
       border: 1px solid var(--border);
-      border-radius: 999px;
-      padding: 7px 13px;
-      color: var(--gold);
-      margin-bottom: 20px;
+      border-radius: 24px;
+    }
+
+    .notice {
+      padding: 25px;
+      margin-bottom: 26px;
+    }
+
+    .notice h2 {
+      color: var(--light);
+      margin: 8px 0 12px;
+      font-size: 1.7rem;
+    }
+
+    .notice p {
+      color: var(--muted);
+    }
+
+    .grade-key {
+      padding: 25px;
+      margin-bottom: 28px;
+    }
+
+    .grade-key h2 {
+      color: var(--light);
+      margin: 8px 0 16px;
+    }
+
+    .grade-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .grade {
+      padding: 16px;
+      border: 1px solid var(--dim);
+      border-radius: 16px;
+    }
+
+    .grade strong {
+      display: block;
+      color: var(--light);
+      margin-bottom: 5px;
+    }
+
+    .grade span {
+      color: var(--muted);
       font-size: 0.9rem;
     }
 
-    .strain-description {
-      color: var(--muted);
-      margin-bottom: 24px;
+    .profile-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 21px;
     }
 
-    .profile-button {
-      display: inline-block;
-      background: var(--gold);
-      color: #090805;
-      padding: 11px 17px;
-      border-radius: 999px;
+    .card {
+      display: flex;
+      flex-direction: column;
+      min-height: 330px;
+      padding: 25px;
+    }
+
+    .profile-mark {
+      width: 66px;
+      height: 66px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      color: var(--gold);
       font-weight: bold;
+      margin-bottom: 17px;
     }
 
-    .information-note {
-      margin-top: 40px;
-      border-left: 3px solid var(--gold);
-      padding-left: 16px;
+    .card h2 {
+      color: var(--light);
+      font-size: 1.8rem;
+      line-height: 1.15;
+      margin-bottom: 11px;
+    }
+
+    .card p {
       color: var(--muted);
-      font-size: 0.92rem;
+    }
+
+    .tags {
+      margin: 15px 0 20px;
+    }
+
+    .tag {
+      display: inline-block;
+      margin: 5px 5px 0 0;
+      padding: 6px 10px;
+      border: 1px solid var(--dim);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+
+    .grade-badge {
+      display: inline-block;
+      align-self: flex-start;
+      margin: 4px 0 18px;
+      padding: 7px 11px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--gold);
+      font-size: 0.73rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .grade-badge.classic {
+      color: var(--classic);
+      border-color: rgba(181, 138, 82, 0.5);
+    }
+
+    .pink-card {
+      border-color: rgba(231, 168, 184, 0.42);
+    }
+
+    .pink-card .profile-mark {
+      color: var(--pink);
+      border-color: rgba(231, 168, 184, 0.48);
+    }
+
+    .button {
+      display: inline-block;
+      align-self: flex-start;
+      margin-top: auto;
+      padding: 10px 15px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--gold);
+    }
+
+    .future {
+      margin-top: 28px;
+      padding: 26px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+    }
+
+    .future h2 {
+      color: var(--light);
+      margin: 8px 0 13px;
+    }
+
+    .future p {
+      color: var(--muted);
+    }
+
+    .future-link {
+      display: inline-block;
+      margin-top: 17px;
+      padding: 10px 15px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--gold);
     }
 
     footer {
       text-align: center;
-      border-top: 1px solid var(--border);
-      padding: 38px 20px 50px;
       color: var(--muted);
+      border-top: 1px solid var(--border);
+      padding: 38px 20px 48px;
     }
 
     .rd {
       color: var(--gold);
-      font-size: 1.8rem;
+      font-size: 1.7rem;
       font-weight: bold;
-      letter-spacing: 0.22em;
+      letter-spacing: 0.2em;
     }
 
-    @media (max-width: 700px) {
-      .strain-grid {
+    @media (max-width: 720px) {
+      .profile-grid,
+      .grade-grid {
         grid-template-columns: 1fr;
-      }
-
-      .strain-card {
-        padding: 25px;
       }
     }
   </style>
@@ -219,137 +311,252 @@
 
 <body>
 
-  <header class="site-header">
-    <div class="header-inner">
+  <header>
+    <div class="brand">RD QUARTERS</div>
 
-      <div class="brand">
-        RD QUARTERS
-      </div>
-
-      <a
-        class="home-link"
-        href="index.html"
-      >
-        Return Home
-      </a>
-
-    </div>
+    <a class="home" href="index.html">
+      Return Home
+    </a>
   </header>
 
   <section class="hero">
+    <p class="label">Current Knowledge Menu</p>
 
-    <p class="eyebrow">
-      Educational Strain Library
-    </p>
-
-    <h1>
-      Current Strains
-    </h1>
+    <h1>Current Strain Profiles</h1>
 
     <p class="hero-description">
-      Explore general educational profiles for the strains
-      currently being featured.
+      Explore general educational information for the profiles currently
+      recorded by RD Quarters. Strain identity and batch grade are kept
+      separate because quality may vary by grower, batch and release.
     </p>
-
   </section>
 
   <main>
 
-    <h2 class="section-title">
-      Active Profiles
-    </h2>
+    <section class="notice">
+      <p class="label">Permanent QR Destination</p>
 
-    <p class="section-intro">
-      Select a strain to view its lineage, aroma, flavor,
-      commonly reported effects and experience notes.
-    </p>
+      <h2>One Code, Changing Profile Menu</h2>
 
-    <section class="strain-grid">
+      <p>
+        The permanent bag QR directs visitors to this page. Individual
+        strain pages remain preserved while the current menu can change
+        whenever new profiles or batches are added.
+      </p>
+    </section>
 
-      <a
-        class="strain-card"
-        href="strains/moon-cookies.html"
-      >
+    <section class="grade-key">
+      <p class="label">RD Quarters Batch Grades</p>
 
-        <p class="card-label">
-          Current Profile 01
-        </p>
+      <h2>Quality Labels Apply to the Current Batch</h2>
 
-        <h3 class="strain-name">
-          Moon Cookies
-        </h3>
+      <div class="grade-grid">
 
-        <div class="strain-type">
-          Indica-Dominant Hybrid
+        <div class="grade">
+          <strong>Reserve</strong>
+          <span>
+            High-grade batch designation.
+          </span>
         </div>
 
-        <p class="strain-description">
-          A Cookies-family cultivar commonly associated with
-          sweet, earthy notes and a gradual progression from an
-          uplifting mental character into deeper physical relaxation.
-        </p>
-
-        <span class="profile-button">
-          View Strain Profile
-        </span>
-
-      </a>
-
-      <a
-        class="strain-card"
-        href="strains/jelly-donut.html"
-      >
-
-        <p class="card-label">
-          Current Profile 02
-        </p>
-
-        <h3 class="strain-name">
-          Jelly Donut
-        </h3>
-
-        <div class="strain-type">
-          Indica-Dominant Hybrid
+        <div class="grade">
+          <strong>Select</strong>
+          <span>
+            Mid-grade batch designation.
+          </span>
         </div>
 
-        <p class="strain-description">
-          A dessert-style hybrid commonly associated with
-          sweet berry, grape and dough-like notes, followed by
-          a cheerful character and deeper physical relaxation.
-        </p>
+        <div class="grade">
+          <strong>Classic</strong>
+          <span>
+            Value-grade batch designation.
+          </span>
+        </div>
 
-        <span class="profile-button">
-          View Strain Profile
+      </div>
+    </section>
+
+    <section class="profile-grid">
+
+      <article class="card">
+        <div class="profile-mark">MC</div>
+
+        <h2>Moon Cookies</h2>
+
+        <span class="grade-badge">
+          Profile Available
         </span>
 
-      </a>
+        <p>
+          A preserved educational profile covering commonly associated
+          characteristics, lineage notes and batch-record placeholders.
+        </p>
+
+        <div class="tags">
+          <span class="tag">Cookies family</span>
+          <span class="tag">Sweet</span>
+          <span class="tag">Earthy</span>
+        </div>
+
+        <a
+          class="button"
+          href="strains/moon-cookies.html"
+        >
+          Open Profile
+        </a>
+      </article>
+
+      <article class="card">
+        <div class="profile-mark">JD</div>
+
+        <h2>Jelly Donut</h2>
+
+        <span class="grade-badge">
+          Profile Available
+        </span>
+
+        <p>
+          A preserved profile documenting commonly reported dessert,
+          fruit and sweet characteristics while noting that source
+          genetics may vary.
+        </p>
+
+        <div class="tags">
+          <span class="tag">Dessert</span>
+          <span class="tag">Fruit</span>
+          <span class="tag">Sweet</span>
+        </div>
+
+        <a
+          class="button"
+          href="strains/jelly-donut.html"
+        >
+          Open Profile
+        </a>
+      </article>
+
+      <article class="card pink-card">
+        <div class="profile-mark">PR</div>
+
+        <h2>Pink Runtz</h2>
+
+        <span class="grade-badge">
+          Profile Available
+        </span>
+
+        <p>
+          A colorful Runtz-associated profile commonly connected with
+          sweet, fruity, candy-like and berry characteristics.
+        </p>
+
+        <div class="tags">
+          <span class="tag">Sweet</span>
+          <span class="tag">Fruit</span>
+          <span class="tag">Candy-like</span>
+        </div>
+
+        <a
+          class="button"
+          href="strains/pink-runtz.html"
+        >
+          Open Profile
+        </a>
+      </article>
+
+      <article class="card">
+        <div class="profile-mark">LCG</div>
+
+        <h2>Lemon Cherry Gelato</h2>
+
+        <span class="grade-badge classic">
+          Classic Grade
+        </span>
+
+        <p>
+          This current value-grade batch is recorded separately from the
+          broader strain identity and its commonly reported citrus,
+          berry and creamy characteristics.
+        </p>
+
+        <div class="tags">
+          <span class="tag">Lemon</span>
+          <span class="tag">Cherry</span>
+          <span class="tag">Gelato</span>
+        </div>
+
+        <a
+          class="button"
+          href="strains/lemon-cherry-gelato.html"
+        >
+          Open Profile
+        </a>
+      </article>
+
+      <article class="card">
+        <div class="profile-mark">LJ</div>
+
+        <h2>Legendary Jack</h2>
+
+        <span class="grade-badge classic">
+          Classic Grade
+        </span>
+
+        <p>
+          A source-named value-grade profile with lineage clearly marked
+          as unverified until breeder, grower or batch documentation
+          becomes available.
+        </p>
+
+        <div class="tags">
+          <span class="tag">Source named</span>
+          <span class="tag">Lineage pending</span>
+          <span class="tag">Classic batch</span>
+        </div>
+
+        <a
+          class="button"
+          href="strains/legendary-jack.html"
+        >
+          Open Profile
+        </a>
+      </article>
 
     </section>
 
-    <p class="information-note">
-      These pages provide general educational strain information.
-      Characteristics may vary by breeder, grower, phenotype,
-      cultivation method and individual experience. No pricing,
-      ordering, availability, payment, delivery or purchasing
-      instructions are provided.
-    </p>
+    <section class="future">
+      <p class="label">Future Progress System</p>
+
+      <h2>The Terpene Trail and Living Strain Tree</h2>
+
+      <p>
+        Future anonymous profiles will allow visitors to collect one
+        discovery stamp for each unique strain, illuminate branches on
+        a personalized strain tree and advance through knowledge-based
+        ranks without requiring invasive personal information.
+      </p>
+
+      <p>
+        Progress will reward discovering unique profiles and learning
+        their information rather than repeatedly scanning the same strain.
+      </p>
+
+      <a class="future-link" href="launch-hub.html">
+        Return to Launch Hub
+      </a>
+    </section>
 
   </main>
 
   <footer>
-
-    <div class="rd">
-      RD
-    </div>
+    <div class="rd">RD</div>
 
     <p>
-      Current Strains · RD Quarters · Hudson, New York
+      Current Strain Knowledge Menu · RD Quarters
     </p>
 
     <p>
       © 2026 RD Quarters. All rights reserved.
     </p>
-
   </footer>
 
 </body>
