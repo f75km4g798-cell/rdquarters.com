@@ -173,10 +173,10 @@
     }
 
     .bag {
-      position: relative;
-      min-height: 610px;
+      display: flex;
+      flex-direction: column;
+      min-height: 690px;
       padding: 28px 24px;
-      overflow: hidden;
 
       background:
         radial-gradient(
@@ -199,6 +199,7 @@
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
       margin-bottom: 25px;
+      flex: 0 0 auto;
     }
 
     .bag-side {
@@ -228,6 +229,7 @@
     .emblem {
       width: 160px;
       height: 160px;
+      flex: 0 0 160px;
       margin: 35px auto 30px;
       border: 2px solid var(--gold);
       border-radius: 50%;
@@ -253,7 +255,6 @@
     }
 
     .strain-window {
-      margin-top: 28px;
       padding: 18px;
       background: rgba(25, 21, 13, 0.88);
       border: 1px solid var(--dim);
@@ -272,64 +273,12 @@
       color: var(--muted);
     }
 
-    .weight-mark {
-      position: absolute;
-      left: 22px;
-      bottom: 22px;
-      width: 64px;
-      height: 64px;
+    .back-content {
       display: grid;
-      place-items: center;
-      border: 1px solid var(--border);
-      border-radius: 13px;
-      color: var(--gold);
-      font-weight: bold;
-    }
-
-    .qr-mark {
-      position: absolute;
-      right: 22px;
-      bottom: 22px;
-      width: 108px;
-      height: 108px;
-      display: grid;
-      place-items: center;
-      text-align: center;
-      padding: 10px;
-
-      background: var(--cream);
-      color: #090805;
-      border: 7px solid var(--cream);
-      outline: 1px solid var(--border);
-    }
-
-    .qr-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      width: 72px;
-      height: 72px;
-      gap: 3px;
-    }
-
-    .qr-grid span {
-      background: #090805;
-    }
-
-    .qr-grid span:nth-child(2),
-    .qr-grid span:nth-child(4),
-    .qr-grid span:nth-child(6),
-    .qr-grid span:nth-child(8),
-    .qr-grid span:nth-child(12),
-    .qr-grid span:nth-child(14),
-    .qr-grid span:nth-child(18),
-    .qr-grid span:nth-child(20),
-    .qr-grid span:nth-child(22),
-    .qr-grid span:nth-child(24) {
-      background: transparent;
+      gap: 18px;
     }
 
     .back-section {
-      margin-top: 22px;
       padding: 17px;
       border: 1px solid var(--dim);
       border-radius: 17px;
@@ -356,12 +305,73 @@
     }
 
     .warning-area {
-      margin-top: 22px;
       padding: 15px;
       border: 1px dashed var(--border);
       border-radius: 16px;
       color: var(--muted);
       font-size: 0.82rem;
+    }
+
+    .bag-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 18px;
+      margin-top: auto;
+      padding-top: 30px;
+    }
+
+    .weight-mark {
+      width: 76px;
+      height: 76px;
+      flex: 0 0 76px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      color: var(--gold);
+      font-weight: bold;
+      font-size: 1.05rem;
+    }
+
+    .qr-mark {
+      width: 118px;
+      height: 118px;
+      flex: 0 0 118px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 12px;
+
+      background: var(--cream);
+      color: #090805;
+      border: 7px solid var(--cream);
+      outline: 1px solid var(--border);
+    }
+
+    .qr-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      width: 78px;
+      height: 78px;
+      gap: 3px;
+    }
+
+    .qr-grid span {
+      background: #090805;
+    }
+
+    .qr-grid span:nth-child(2),
+    .qr-grid span:nth-child(4),
+    .qr-grid span:nth-child(6),
+    .qr-grid span:nth-child(8),
+    .qr-grid span:nth-child(12),
+    .qr-grid span:nth-child(14),
+    .qr-grid span:nth-child(18),
+    .qr-grid span:nth-child(20),
+    .qr-grid span:nth-child(22),
+    .qr-grid span:nth-child(24) {
+      background: transparent;
     }
 
     .grid {
@@ -447,7 +457,46 @@
       }
 
       .bag {
-        min-height: 610px;
+        min-height: 720px;
+      }
+
+      .bag-bottom {
+        padding-top: 26px;
+      }
+    }
+
+    @media (max-width: 390px) {
+      main {
+        width: min(100% - 24px, 1040px);
+      }
+
+      .bag-stage {
+        padding: 14px;
+      }
+
+      .bag {
+        padding: 24px 18px;
+      }
+
+      .bag-title {
+        font-size: 2.05rem;
+      }
+
+      .weight-mark {
+        width: 68px;
+        height: 68px;
+        flex-basis: 68px;
+      }
+
+      .qr-mark {
+        width: 108px;
+        height: 108px;
+        flex-basis: 108px;
+      }
+
+      .qr-grid {
+        width: 70px;
+        height: 70px;
       }
     }
   </style>
@@ -505,8 +554,8 @@
         <h2>Front and Back Packaging Map</h2>
 
         <p>
-          This is a structural preview for planning placement before
-          the finished logo artwork and real QR image are added.
+          This structural preview establishes clean placement before
+          the finished logo artwork and real scannable QR are added.
         </p>
       </div>
 
@@ -534,23 +583,28 @@
 
           <div class="strain-window">
             <strong>Current Profile</strong>
+
             <span>
               Reusable strain-name and educational-information area
             </span>
           </div>
 
-          <div class="weight-mark">
-            3.5g
-          </div>
+          <div class="bag-bottom">
 
-          <div class="qr-mark">
-            <div class="qr-grid">
-              <span></span><span></span><span></span><span></span><span></span>
-              <span></span><span></span><span></span><span></span><span></span>
-              <span></span><span></span><span></span><span></span><span></span>
-              <span></span><span></span><span></span><span></span><span></span>
-              <span></span><span></span><span></span><span></span><span></span>
+            <div class="weight-mark">
+              3.5g
             </div>
+
+            <div class="qr-mark">
+              <div class="qr-grid">
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span>
+              </div>
+            </div>
+
           </div>
 
         </article>
@@ -566,57 +620,65 @@
             Knowledge
           </h2>
 
-          <div class="back-section">
-            <h3>Profile Information</h3>
+          <div class="back-content">
 
-            <p>
-              Space for general educational characteristics,
-              lineage notes and product-identification information.
-            </p>
-          </div>
+            <div class="back-section">
+              <h3>Profile Information</h3>
 
-          <div class="back-section">
-            <h3>QR Destination</h3>
-
-            <p>
-              The permanent code points to:
-            </p>
-
-            <ul class="back-list">
-              <li>Current strain-information menu</li>
-              <li>Individual archived profiles</li>
-              <li>Educational notes</li>
-              <li>RD Quarters digital identity</li>
-            </ul>
-          </div>
-
-          <div class="back-section">
-            <h3>Batch and Record Area</h3>
-
-            <p>
-              Reserved space for legally required information,
-              batch details and other market-specific labeling.
-            </p>
-          </div>
-
-          <div class="warning-area">
-            Final packaging must be reviewed for all required state,
-            local, child-resistant and regulated-product labeling
-            requirements before manufacturing or distribution.
-          </div>
-
-          <div class="weight-mark">
-            518
-          </div>
-
-          <div class="qr-mark">
-            <div class="qr-grid">
-              <span></span><span></span><span></span><span></span><span></span>
-              <span></span><span></span><span></span><span></span><span></span>
-              <span></span><span></span><span></span><span></span><span></span>
-              <span></span><span></span><span></span><span></span><span></span>
-              <span></span><span></span><span></span><span></span><span></span>
+              <p>
+                Space for general educational characteristics,
+                lineage notes and product-identification information.
+              </p>
             </div>
+
+            <div class="back-section">
+              <h3>QR Destination</h3>
+
+              <p>
+                The permanent code points to:
+              </p>
+
+              <ul class="back-list">
+                <li>Current strain-information menu</li>
+                <li>Individual archived profiles</li>
+                <li>Educational notes</li>
+                <li>RD Quarters digital identity</li>
+              </ul>
+            </div>
+
+            <div class="back-section">
+              <h3>Batch and Record Area</h3>
+
+              <p>
+                Reserved space for legally required information,
+                batch details and other market-specific labeling.
+              </p>
+            </div>
+
+            <div class="warning-area">
+              Final packaging must be reviewed for all applicable
+              state, local, child-resistant and regulated-product
+              labeling requirements before manufacturing or distribution.
+            </div>
+
+          </div>
+
+          <div class="bag-bottom">
+
+            <div class="weight-mark">
+              518
+            </div>
+
+            <div class="qr-mark">
+              <div class="qr-grid">
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span><span></span>
+              </div>
+            </div>
+
           </div>
 
         </article>
