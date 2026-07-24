@@ -1,1 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
 
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Launch Hub | RD Quarters</title>
+
+  <style>
+    :root {
+      --black: #060605;
+      --panel: #19150d;
+      --gold: #ddb24c;
+      --light: #f2d487;
+      --cream: #f3e7c9;
+      --muted: #aa9b7c;
+      --border: rgba(221, 178, 76, 0.5);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+
+      background:
+        radial-gradient(
+          circle at top,
+          rgba(221, 178, 76, 0.14),
+          transparent 32rem
+        ),
+        var(--black);
+
+      color: var(--cream);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.65;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 22px;
+      background: rgba(6, 6, 5, 0.96);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .brand {
+      color: var(--gold);
+      font-weight: bold;
+      letter-spacing: 0.18em;
+    }
+
+    .home {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 8px 14px;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 72px 24px 52px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .label {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.23em;
+      font-size: 0.75rem;
+    }
+
+    h1 {
+      color: var(--light);
+      font-size: clamp(3rem, 11vw, 5.5rem);
+      line-height: 1;
+      margin: 16px 0 22px;
+    }
+
+    .hero-description {
+      max-width: 760px;
+      margin: auto;
+      color: var(--muted);
+    }
+
+    main {
+      width: min(1050px, calc(100% - 40px));
+      margin: auto;
+      padding: 48px 0 82px;
+    }
+
+    .priority {
+      padding: 26px;
+      margin-bottom: 28px;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(221, 178, 76, 0.1),
+          transparent 55%
+        ),
+        var(--panel);
+    }
+
+    .priority h2 {
+      color: var(--light);
+      margin: 8px 0 13px;
+      font-size: 1.8rem;
+    }
+
+    .priority p {
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      min-height: 320px;
+      padding: 25px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+    }
+
+    .card-number {
+      width: 54px;
+      height: 54px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      color: var(--gold);
+      font-weight: bold;
+      margin-bottom: 18px;
+    }
+
+    .card h2 {
+      color: var(--light);
+      font-size: 1.85rem;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      color: var(--muted);
+    }
+
+    .card ul {
+      margin: 18px 0 22px 20px;
+      color: var(--muted);
+    }
+
+    .card li {
+      margin-bottom: 7px;
+    }
+
+    .button {
+      display: inline-block;
+      align-self: flex-start;
+      margin-top: auto;
+      padding: 10px 15px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--gold);
+    }
+
+    .system {
+      margin-top: 30px;
+      padding: 27px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+    }
+
+    .system h2 {
+      color: var(--light);
+      margin: 8px 0 14px;
+    }
+
+    .system p {
+      color: var(--muted);
+    }
+
+    .flow {
+      display: grid;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .flow-item {
+      padding: 14px 16px;
+      border: 1px solid rgba(221, 178, 76, 0.28);
+      border-radius: 14px;
+      color: var(--muted);
+    }
+
+    .flow-item strong {
+      color: var(--light);
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      padding: 36px 20px 46px;
+    }
+
+    .rd {
+      color: var(--gold);
+      font-size: 1.7rem;
+      font-weight: bold;
+      letter-spacing: 0.2em;
+    }
+
+    @media (max-width: 720px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="brand">RD QUARTERS</div>
+
+    <a class="home" href="index.html">
+      Return Home
+    </a>
+  </header>
+
+  <section class="hero">
+    <p class="label">Connected Release System</p>
+
+    <h1>Launch Hub</h1>
+
+    <p class="hero-description">
+      The central map connecting custom packaging, product information,
+      numbered artwork, apparel, certificates, QR portals and the
+      evolving Knowledge Maze.
+    </p>
+  </section>
+
+  <main>
+
+    <section class="priority">
+      <p class="label">Current Priority</p>
+
+      <h2>Custom Bag and QR Launch</h2>
+
+      <p>
+        The first launch focus is a clean custom-bag system with a
+        permanent product-information QR destination. Artwork portals,
+        apparel and certificates can then connect through the same
+        numbered RD Quarters identity system.
+      </p>
+    </section>
+
+    <section class="grid">
+
+      <article class="card">
+        <div class="card-number">01</div>
+
+        <h2>Custom Bags</h2>
+
+        <p>
+          Develop the visual packaging system, bag dimensions, front and
+          back layout, logo placement, strain-information area and
+          permanent QR position.
+        </p>
+
+        <ul>
+          <li>Hudson and 518 identity</li>
+          <li>Primary product logo</li>
+          <li>Reusable strain-information layout</li>
+          <li>Consistent QR placement</li>
+        </ul>
+
+        <span class="button">
+          Design Foundation
+        </span>
+      </article>
+
+      <article class="card">
+        <div class="card-number">02</div>
+
+        <h2>Product Information QR</h2>
+
+        <p>
+          A permanent QR code directs visitors to the current educational
+          product-information page while individual strain pages preserve
+          the historical record.
+        </p>
+
+        <ul>
+          <li>Permanent current-product destination</li>
+          <li>Moon Cookies profile</li>
+          <li>Jelly Donut profile</li>
+          <li>Future strain profiles</li>
+        </ul>
+
+        <a class="button" href="current-strain.html">
+          View Current Information
+        </a>
+      </article>
+
+      <article class="card">
+        <div class="card-number">03</div>
+
+        <h2>Numbered Artwork</h2>
+
+        <p>
+          Each What If receives one permanent number that stays attached
+          to the artwork, master list, portal, author note, certificate,
+          QR mark and merchandise identity.
+        </p>
+
+        <ul>
+          <li>RD signature and permanent number</li>
+          <li>Artwork portal destination</li>
+          <li>Author note and hidden phonics</li>
+          <li>Knowledge Maze reward</li>
+        </ul>
+
+        <a class="button" href="portals/what-if-601.html">
+          View What If 601
+        </a>
+      </article>
+
+      <article class="card">
+        <div class="card-number">04</div>
+
+        <h2>Apparel</h2>
+
+        <p>
+          Shirts and prints can carry the same numbered artwork identity,
+          art-line logo and discreet QR portal mark as the original piece.
+        </p>
+
+        <ul>
+          <li>Artwork edition number</li>
+          <li>Correct art-line badge</li>
+          <li>Portal QR connection</li>
+          <li>Certificate matching</li>
+        </ul>
+
+        <a class="button" href="apparel.html">
+          View Apparel
+        </a>
+      </article>
+
+      <article class="card">
+        <div class="card-number">05</div>
+
+        <h2>Certificates</h2>
+
+        <p>
+          Every numbered artwork can receive a matching certificate record
+          with its title, number, art line, author note, portal address and
+          edition information.
+        </p>
+
+        <ul>
+          <li>Permanent record number</li>
+          <li>Artwork and product identity</li>
+          <li>Author statement</li>
+          <li>QR verification destination</li>
+        </ul>
+
+        <span class="button">
+          Certificate System Pending
+        </span>
+      </article>
+
+      <article class="card">
+        <div class="card-number">06</div>
+
+        <h2>Neural Atlas</h2>
+
+        <p>
+          Visitors will gradually illuminate a personalized brain map by
+          exploring portals, collecting tokens and learning across a
+          balanced range of cognitive domains.
+        </p>
+
+        <ul>
+          <li>Anonymous saved progress</li>
+          <li>Illuminated brain regions</li>
+          <li>Zoomable knowledge layers</li>
+          <li>Locked pathways still ahead</li>
+        </ul>
+
+        <span class="button">
+          Atlas Foundation Next
+        </span>
+      </article>
+
+    </section>
+
+    <section class="system">
+      <p class="label">Unified Identity Flow</p>
+
+      <h2>One Number Connects the Entire Release</h2>
+
+      <p>
+        The same permanent artwork number should travel through every
+        part of the RD Quarters ecosystem.
+      </p>
+
+      <div class="flow">
+
+        <div class="flow-item">
+          <strong>Artwork:</strong>
+          RD signature, series number and QR portal mark.
+        </div>
+
+        <div class="flow-item">
+          <strong>Website:</strong>
+          artwork portal, author note, interpretation and neural lesson.
+        </div>
+
+        <div class="flow-item">
+          <strong>Apparel:</strong>
+          matching artwork number, logo and portal destination.
+        </div>
+
+        <div class="flow-item">
+          <strong>Certificate:</strong>
+          permanent edition identity and verification record.
+        </div>
+
+        <div class="flow-item">
+          <strong>Knowledge System:</strong>
+          token, brain circuit, illuminated region and traveler progress.
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="rd">RD</div>
+
+    <p>
+      Launch Hub · RD Quarters
+    </p>
+
+    <p>
+      © 2026 RD Quarters. All rights reserved.
+    </p>
+  </footer>
+
+</body>
+</html>
