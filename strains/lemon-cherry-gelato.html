@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="robots"
+    content="noindex, nofollow"
+  >
+
+  <title>Lemon Cherry Gelato | RD Quarters</title>
+
+  <style>
+    :root {
+      --black: #050504;
+      --panel: #19150d;
+      --gold: #ddb24c;
+      --light: #f2d487;
+      --cream: #f3e7c9;
+      --muted: #aa9b7c;
+      --lemon: #e8cd68;
+      --cherry: #bb5369;
+      --classic: #b58a52;
+      --border: rgba(221, 178, 76, 0.5);
+      --classic-border: rgba(181, 138, 82, 0.48);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+
+      background:
+        radial-gradient(
+          circle at 28% 8%,
+          rgba(232, 205, 104, 0.13),
+          transparent 24rem
+        ),
+        radial-gradient(
+          circle at 72% 9%,
+          rgba(187, 83, 105, 0.13),
+          transparent 24rem
+        ),
+        var(--black);
+
+      color: var(--cream);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.65;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 22px;
+      background: rgba(5, 5, 4, 0.97);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .brand {
+      color: var(--gold);
+      font-weight: bold;
+      letter-spacing: 0.18em;
+    }
+
+    .return {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 8px 14px;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 75px 22px 54px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .label {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.23em;
+      font-size: 0.74rem;
+    }
+
+    h1 {
+      color: var(--light);
+      font-size: clamp(2.9rem, 11vw, 5.7rem);
+      line-height: 1;
+      margin: 16px 0 20px;
+    }
+
+    .lemon {
+      color: var(--lemon);
+    }
+
+    .cherry {
+      color: var(--cherry);
+    }
+
+    .hero-description {
+      max-width: 760px;
+      margin: auto;
+      color: var(--muted);
+      font-size: 1.04rem;
+    }
+
+    main {
+      width: min(1000px, calc(100% - 40px));
+      margin: auto;
+      padding: 46px 0 82px;
+    }
+
+    .grade-banner,
+    .identity,
+    .card {
+      background:
+        linear-gradient(
+          145deg,
+          rgba(181, 138, 82, 0.08),
+          transparent 55%
+        ),
+        var(--panel);
+
+      border: 1px solid var(--border);
+      border-radius: 24px;
+    }
+
+    .grade-banner {
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+
+    .grade-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .grade-banner h2 {
+      color: var(--light);
+      margin: 7px 0;
+      font-size: 1.75rem;
+    }
+
+    .grade-banner p {
+      color: var(--muted);
+    }
+
+    .grade-mark {
+      border: 1px solid var(--classic-border);
+      border-radius: 999px;
+      padding: 10px 15px;
+      color: var(--classic);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+
+    .identity {
+      padding: 27px;
+      margin-bottom: 26px;
+      text-align: center;
+    }
+
+    .identity-mark {
+      width: 165px;
+      height: 165px;
+      margin: 0 auto 22px;
+
+      display: grid;
+      place-items: center;
+      text-align: center;
+
+      border: 2px solid var(--lemon);
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle at 35% 35%,
+          rgba(232, 205, 104, 0.15),
+          rgba(187, 83, 105, 0.09) 55%,
+          transparent 72%
+        );
+
+      box-shadow:
+        0 0 0 14px rgba(232, 205, 104, 0.03),
+        0 0 40px rgba(187, 83, 105, 0.14);
+    }
+
+    .identity-mark strong {
+      display: block;
+      color: var(--light);
+      font-size: 2rem;
+    }
+
+    .identity-mark span {
+      display: block;
+      color: var(--cherry);
+      letter-spacing: 0.12em;
+      font-size: 0.7rem;
+    }
+
+    .identity h2 {
+      color: var(--light);
+      font-size: 1.9rem;
+      margin-bottom: 10px;
+    }
+
+    .identity p {
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 21px;
+    }
+
+    .card {
+      padding: 25px;
+    }
+
+    .card h2 {
+      color: var(--light);
+      font-size: 1.65rem;
+      margin: 8px 0 13px;
+    }
+
+    .card p {
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .card ul {
+      margin: 15px 0 0 20px;
+      color: var(--muted);
+    }
+
+    .card li {
+      margin-bottom: 7px;
+    }
+
+    .full {
+      margin-top: 21px;
+    }
+
+    .profile-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 11px 0;
+      border-bottom: 1px solid rgba(221, 178, 76, 0.15);
+    }
+
+    .profile-row:last-child {
+      border-bottom: 0;
+    }
+
+    .profile-row strong {
+      color: var(--light);
+    }
+
+    .profile-row span {
+      color: var(--muted);
+      text-align: right;
+    }
+
+    .tag {
+      display: inline-block;
+      margin: 6px 6px 0 0;
+      padding: 6px 10px;
+      border: 1px solid var(--classic-border);
+      border-radius: 999px;
+      color: var(--classic);
+      font-size: 0.8rem;
+    }
+
+    .tag.lemon-tag {
+      color: var(--lemon);
+      border-color: rgba(232, 205, 104, 0.45);
+    }
+
+    .tag.cherry-tag {
+      color: var(--cherry);
+      border-color: rgba(187, 83, 105, 0.5);
+    }
+
+    .notice {
+      border-left: 4px solid var(--classic);
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 18px;
+      padding: 10px 15px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--gold);
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      padding: 38px 20px 48px;
+    }
+
+    .rd {
+      color: var(--gold);
+      font-size: 1.7rem;
+      font-weight: bold;
+      letter-spacing: 0.2em;
+    }
+
+    @media (max-width: 720px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .profile-row {
+        display: block;
+      }
+
+      .profile-row span {
+        display: block;
+        text-align: left;
+        margin-top: 4px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="brand">RD QUARTERS</div>
+
+    <a class="return" href="../current-strain.html">
+      Current Profiles
+    </a>
+  </header>
+
+  <section class="hero">
+    <p class="label">Strain Knowledge Profile</p>
+
+    <h1>
+      <span class="lemon">Lemon</span>
+      <span class="cherry">Cherry</span>
+      Gelato
+    </h1>
+
+    <p class="hero-description">
+      A batch-specific educational profile separating the familiar
+      Lemon Cherry Gelato strain identity from the Classic-grade
+      designation assigned to this particular release.
+    </p>
+  </section>
+
+  <main>
+
+    <section class="grade-banner">
+
+      <div class="grade-row">
+
+        <div>
+          <p class="label">Current Batch Grade</p>
+
+          <h2>Classic</h2>
+
+          <p>
+            Classic is the RD Quarters value-grade designation for this
+            batch. It does not permanently grade the Lemon Cherry Gelato
+            strain or every future version supplied by another grower.
+          </p>
+        </div>
+
+        <div class="grade-mark">
+          Classic Grade
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="identity">
+
+      <div class="identity-mark">
+        <div>
+          <strong>LCG</strong>
+          <span>LEMON CHERRY GELATO</span>
+        </div>
+      </div>
+
+      <h2>Citrus, Fruit and Gelato Character</h2>
+
+      <p>
+        Lemon Cherry Gelato is commonly presented as a hybrid with
+        sweet-fruit, berry and citrus characteristics. The strength
+        of those qualities can vary greatly between different growers,
+        phenotypes, cure conditions and individual batches.
+      </p>
+
+    </section>
+
+    <section class="grid">
+
+      <article class="card">
+        <p class="label">Profile Classification</p>
+
+        <h2>Current Identity</h2>
+
+        <div class="profile-row">
+          <strong>Type</strong>
+          <span>Hybrid</span>
+        </div>
+
+        <div class="profile-row">
+          <strong>Current grade</strong>
+          <span>Classic</span>
+        </div>
+
+        <div class="profile-row">
+          <strong>Source name</strong>
+          <span>Lemon Cherry Gelato</span>
+        </div>
+
+        <div class="profile-row">
+          <strong>Grade scope</strong>
+          <span>This current batch only</span>
+        </div>
+      </article>
+
+      <article class="card">
+        <p class="label">Lineage Notes</p>
+
+        <h2>Reported Genetics Can Differ</h2>
+
+        <p>
+          Lemon Cherry Gelato is frequently connected with
+          Sunset Sherbet and Girl Scout Cookies genetics, sometimes
+          with another parent or breeder-specific variation.
+        </p>
+
+        <p>
+          Because products sold under the same name may not share
+          identical genetics, source or breeder documentation should
+          be treated as the most specific batch record.
+        </p>
+      </article>
+
+      <article class="card">
+        <p class="label">Aroma and Flavor</p>
+
+        <h2>Commonly Reported Notes</h2>
+
+        <span class="tag lemon-tag">Lemon</span>
+        <span class="tag cherry-tag">Berry</span>
+        <span class="tag cherry-tag">Sweet fruit</span>
+        <span class="tag lemon-tag">Citrus</span>
+        <span class="tag">Creamy</span>
+        <span class="tag">Light gas</span>
+
+        <p style="margin-top:16px;">
+          This Classic batch may express those qualities more lightly
+          than a stronger Select or Reserve version.
+        </p>
+      </article>
+
+      <article class="card">
+        <p class="label">Classic Grade</p>
+
+        <h2>What the Grade Means</h2>
+
+        <ul>
+          <li>A value-oriented current batch</li>
+          <li>Grade applies to this release only</li>
+          <li>Not a permanent judgment of the strain</li>
+          <li>Future batches may receive another grade</li>
+          <li>Potency is not assumed without verified testing</li>
+        </ul>
+      </article>
+
+    </section>
+
+    <article class="card full">
+      <p class="label">Appearance</p>
+
+      <h2>Common Visual Traits</h2>
+
+      <ul>
+        <li>Green flower with possible darker or purple tones</li>
+        <li>Orange pistils</li>
+        <li>Visible trichome coverage</li>
+        <li>Flower density and trim varying by grower</li>
+        <li>Color and structure differing between phenotypes</li>
+      </ul>
+    </article>
+
+    <article class="card full">
+      <p class="label">Reported Experience</p>
+
+      <h2>Effects Vary by Person and Batch</h2>
+
+      <p>
+        Consumer reports commonly describe combinations of relaxed,
+        euphoric, tingly or uplifted experiences. These reports are not
+        guarantees, and this Classic-grade batch may differ from other
+        products using the same strain name.
+      </p>
+
+      <p>
+        Individual responses depend on the person, amount, tolerance,
+        setting and the actual chemical profile of the flower.
+      </p>
+    </article>
+
+    <article class="card full">
+      <p class="label">RD Quarters Grade System</p>
+
+      <h2>Batch Quality Is Separate from Strain Identity</h2>
+
+      <p>
+        The strain profile preserves the cultivar name and commonly
+        associated characteristics. The grade records the position of
+        one particular release based on its current presentation.
+      </p>
+
+      <p>
+        Lemon Cherry Gelato may appear as Classic now and later return
+        as Select or Reserve if a different batch offers stronger aroma,
+        structure, freshness, cure and verified information.
+      </p>
+    </article>
+
+    <article class="card full">
+      <p class="label">Batch Record</p>
+
+      <h2>Information to Add Later</h2>
+
+      <ul>
+        <li>Grower or source</li>
+        <li>Batch or lot identification</li>
+        <li>Packaging date</li>
+        <li>Observed flower structure</li>
+        <li>Observed aroma and flavor</li>
+        <li>Verified laboratory information, when available</li>
+        <li>Source-provided lineage or breeder details</li>
+      </ul>
+    </article>
+
+    <article class="card full notice">
+      <p class="label">Important Notice</p>
+
+      <h2>Educational Information Only</h2>
+
+      <p>
+        This page does not offer products for sale and does not provide
+        medical advice. Cannabis laws, age restrictions and possession
+        rules vary by location. Keep all regulated products securely
+        stored and away from children and animals.
+      </p>
+    </article>
+
+    <article class="card full">
+      <p class="label">Future Strain Passport</p>
+
+      <h2>Lemon Cherry Gelato Discovery Record</h2>
+
+      <p>
+        This profile can later award an anonymous visitor a Lemon Cherry
+        Gelato passport stamp, illuminate a citrus-and-dessert branch on
+        the Living Strain Tree and preserve this release as Classic grade.
+      </p>
+
+      <p>
+        The main collection reward will come from discovering unique
+        strain profiles and learning their information—not from repeatedly
+        scanning the same product.
+      </p>
+    </article>
+
+    <article class="card full">
+      <p class="label">Profile Navigation</p>
+
+      <h2>Return to the Current Menu</h2>
+
+      <a class="button" href="../current-strain.html">
+        Return to Current Profiles
+      </a>
+    </article>
+
+  </main>
+
+  <footer>
+    <div class="rd">RD</div>
+
+    <p>
+      Lemon Cherry Gelato Knowledge Profile · Classic Grade
+    </p>
+
+    <p>
+      © 2026 RD Quarters. All rights reserved.
+    </p>
+  </footer>
+
+</body>
+</html>
