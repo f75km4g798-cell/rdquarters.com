@@ -1,1 +1,1435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
 
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="robots"
+    content="noindex, nofollow"
+  >
+
+  <title>Neural Atlas | RD Quarters</title>
+
+  <style>
+    :root {
+      --black: #050504;
+      --panel: #18140d;
+      --gold: #ddb24c;
+      --light-gold: #f2d487;
+      --cream: #f3e7c9;
+      --muted: #a99b7c;
+      --border: rgba(221, 178, 76, 0.5);
+      --dim: rgba(221, 178, 76, 0.18);
+      --glow: rgba(242, 212, 135, 0.7);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+
+      background:
+        radial-gradient(
+          circle at 50% 8%,
+          rgba(221, 178, 76, 0.15),
+          transparent 31rem
+        ),
+        var(--black);
+
+      color: var(--cream);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.65;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 22px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(5, 5, 4, 0.97);
+    }
+
+    .brand {
+      color: var(--gold);
+      font-weight: bold;
+      letter-spacing: 0.18em;
+    }
+
+    .header-links {
+      display: flex;
+      gap: 9px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .header-link {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 8px 13px;
+      font-size: 0.88rem;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 70px 22px 50px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .label {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.23em;
+      font-size: 0.74rem;
+    }
+
+    h1 {
+      color: var(--light-gold);
+      font-size: clamp(3rem, 11vw, 5.7rem);
+      line-height: 1;
+      margin: 16px 0 22px;
+    }
+
+    .hero-description {
+      max-width: 780px;
+      margin: auto;
+      color: var(--muted);
+      font-size: 1.03rem;
+    }
+
+    main {
+      width: min(1080px, calc(100% - 38px));
+      margin: auto;
+      padding: 46px 0 82px;
+    }
+
+    .traveler-panel,
+    .atlas-panel,
+    .card {
+      background:
+        linear-gradient(
+          145deg,
+          rgba(221, 178, 76, 0.08),
+          transparent 55%
+        ),
+        var(--panel);
+
+      border: 1px solid var(--border);
+      border-radius: 24px;
+    }
+
+    .traveler-panel {
+      padding: 25px;
+      margin-bottom: 26px;
+    }
+
+    .traveler-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .traveler-panel h2 {
+      color: var(--light-gold);
+      margin: 7px 0;
+    }
+
+    .traveler-panel p {
+      color: var(--muted);
+    }
+
+    .traveler-code {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 9px 13px;
+      color: var(--gold);
+    }
+
+    .progress-track {
+      height: 14px;
+      margin-top: 18px;
+      background: #080805;
+      border: 1px solid var(--dim);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      width: 12%;
+      height: 100%;
+
+      background:
+        linear-gradient(
+          90deg,
+          #8e6a18,
+          var(--gold),
+          var(--light-gold)
+        );
+    }
+
+    .progress-text {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .atlas-panel {
+      padding: 24px;
+      margin-bottom: 28px;
+      overflow: hidden;
+    }
+
+    .atlas-heading {
+      text-align: center;
+      margin-bottom: 22px;
+    }
+
+    .atlas-heading h2 {
+      color: var(--light-gold);
+      font-size: 2rem;
+      margin: 7px 0 8px;
+    }
+
+    .atlas-heading p {
+      color: var(--muted);
+    }
+
+    .map-window {
+      position: relative;
+      min-height: 590px;
+      overflow: auto;
+
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(221, 178, 76, 0.13),
+          transparent 17rem
+        ),
+        #080805;
+
+      border: 1px solid var(--dim);
+      border-radius: 24px;
+      touch-action: pan-x pan-y pinch-zoom;
+    }
+
+    .brain-map {
+      position: relative;
+      width: 760px;
+      height: 590px;
+      margin: auto;
+      transform-origin: center;
+      transition: transform 0.3s ease;
+    }
+
+    .brain-outline {
+      position: absolute;
+      top: 58px;
+      left: 130px;
+      width: 500px;
+      height: 430px;
+
+      border: 2px solid rgba(221, 178, 76, 0.38);
+      border-radius: 48% 52% 44% 48% / 42% 45% 55% 58%;
+
+      box-shadow:
+        inset 0 0 70px rgba(221, 178, 76, 0.05),
+        0 0 45px rgba(221, 178, 76, 0.07);
+    }
+
+    .hemisphere-line {
+      position: absolute;
+      top: 78px;
+      left: 380px;
+      width: 1px;
+      height: 385px;
+      background: rgba(221, 178, 76, 0.22);
+    }
+
+    .pathway {
+      position: absolute;
+      height: 3px;
+      background: rgba(221, 178, 76, 0.2);
+      transform-origin: left center;
+      border-radius: 999px;
+    }
+
+    .pathway.active {
+      background: var(--light-gold);
+      box-shadow:
+        0 0 8px var(--glow),
+        0 0 18px rgba(242, 212, 135, 0.45);
+      animation: pulseLine 2.6s infinite;
+    }
+
+    .path-one {
+      width: 175px;
+      left: 255px;
+      top: 205px;
+      transform: rotate(17deg);
+    }
+
+    .path-two {
+      width: 130px;
+      left: 375px;
+      top: 250px;
+      transform: rotate(42deg);
+    }
+
+    .path-three {
+      width: 190px;
+      left: 285px;
+      top: 360px;
+      transform: rotate(-18deg);
+    }
+
+    .path-four {
+      width: 140px;
+      left: 435px;
+      top: 170px;
+      transform: rotate(23deg);
+    }
+
+    .node {
+      position: absolute;
+      width: 112px;
+      height: 112px;
+
+      display: grid;
+      place-items: center;
+      text-align: center;
+
+      padding: 10px;
+      border: 1px solid rgba(221, 178, 76, 0.3);
+      border-radius: 50%;
+
+      background: #100e09;
+      color: var(--muted);
+
+      cursor: pointer;
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+    }
+
+    .node strong {
+      display: block;
+      color: var(--cream);
+      font-size: 0.88rem;
+    }
+
+    .node small {
+      display: block;
+      font-size: 0.7rem;
+      margin-top: 3px;
+    }
+
+    .node:hover,
+    .node:focus {
+      transform: scale(1.06);
+      outline: none;
+    }
+
+    .node.active {
+      border: 2px solid var(--light-gold);
+      color: var(--gold);
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(242, 212, 135, 0.23),
+          rgba(25, 21, 13, 0.98) 68%
+        );
+
+      box-shadow:
+        0 0 12px var(--glow),
+        0 0 35px rgba(221, 178, 76, 0.38);
+
+      animation: pulseNode 2.8s infinite;
+    }
+
+    .prefrontal {
+      top: 115px;
+      left: 175px;
+    }
+
+    .language {
+      top: 285px;
+      left: 160px;
+    }
+
+    .memory {
+      top: 390px;
+      left: 300px;
+    }
+
+    .amygdala {
+      top: 270px;
+      left: 400px;
+      width: 94px;
+      height: 94px;
+    }
+
+    .creativity {
+      top: 105px;
+      left: 500px;
+    }
+
+    .movement {
+      top: 385px;
+      left: 520px;
+    }
+
+    .reward {
+      top: 225px;
+      left: 585px;
+      width: 94px;
+      height: 94px;
+    }
+
+    .zoom-controls {
+      position: sticky;
+      left: 14px;
+      bottom: 14px;
+
+      display: flex;
+      gap: 8px;
+      width: max-content;
+      margin: 14px;
+      z-index: 4;
+    }
+
+    .zoom-button {
+      width: 46px;
+      height: 46px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      background: rgba(5, 5, 4, 0.94);
+      color: var(--gold);
+      font-size: 1.3rem;
+    }
+
+    .legend {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .legend-dot {
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: #100e09;
+    }
+
+    .legend-dot.active {
+      background: var(--light-gold);
+      box-shadow: 0 0 10px var(--glow);
+    }
+
+    .detail-panel {
+      display: none;
+      margin-top: 22px;
+      padding: 23px;
+
+      background: #0d0b07;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+    }
+
+    .detail-panel.show {
+      display: block;
+    }
+
+    .detail-panel h3 {
+      color: var(--light-gold);
+      font-size: 1.7rem;
+      margin: 7px 0 12px;
+    }
+
+    .detail-panel p {
+      color: var(--muted);
+      margin-bottom: 11px;
+    }
+
+    .detail-link {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 9px 14px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--gold);
+    }
+
+    .section {
+      margin-top: 30px;
+    }
+
+    .section-heading {
+      margin-bottom: 18px;
+    }
+
+    .section-heading h2 {
+      color: var(--light-gold);
+      font-size: 2rem;
+      margin: 7px 0 8px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 19px;
+    }
+
+    .card {
+      padding: 23px;
+    }
+
+    .card h3 {
+      color: var(--light-gold);
+      margin: 9px 0 10px;
+      font-size: 1.35rem;
+    }
+
+    .card p {
+      color: var(--muted);
+    }
+
+    .status {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 6px 10px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--gold);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+    }
+
+    .molecule {
+      position: relative;
+      width: 105px;
+      height: 86px;
+      margin: 15px 0;
+    }
+
+    .atom {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      display: grid;
+      place-items: center;
+
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+
+      background: #090805;
+      color: var(--light-gold);
+      font-size: 0.65rem;
+    }
+
+    .atom-one {
+      left: 40px;
+      top: 0;
+    }
+
+    .atom-two {
+      left: 4px;
+      top: 42px;
+    }
+
+    .atom-three {
+      right: 4px;
+      top: 42px;
+    }
+
+    .atom-four {
+      left: 40px;
+      bottom: 0;
+    }
+
+    .bond {
+      position: absolute;
+      width: 48px;
+      height: 1px;
+      background: var(--gold);
+      transform-origin: left center;
+    }
+
+    .bond-one {
+      left: 25px;
+      top: 48px;
+      transform: rotate(-39deg);
+    }
+
+    .bond-two {
+      left: 56px;
+      top: 48px;
+      transform: rotate(39deg);
+    }
+
+    .bond-three {
+      left: 26px;
+      top: 58px;
+      transform: rotate(32deg);
+    }
+
+    .bond-four {
+      left: 56px;
+      top: 58px;
+      transform: rotate(-32deg);
+    }
+
+    .locked {
+      opacity: 0.56;
+    }
+
+    .locked-symbol {
+      font-size: 2rem;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      padding: 38px 20px 48px;
+    }
+
+    .rd {
+      color: var(--gold);
+      font-size: 1.7rem;
+      font-weight: bold;
+      letter-spacing: 0.2em;
+    }
+
+    @keyframes pulseNode {
+      0%, 100% {
+        box-shadow:
+          0 0 10px rgba(242, 212, 135, 0.5),
+          0 0 28px rgba(221, 178, 76, 0.25);
+      }
+
+      50% {
+        box-shadow:
+          0 0 18px rgba(242, 212, 135, 0.9),
+          0 0 48px rgba(221, 178, 76, 0.52);
+      }
+    }
+
+    @keyframes pulseLine {
+      0%, 100% {
+        opacity: 0.58;
+      }
+
+      50% {
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 760px) {
+      header {
+        align-items: flex-start;
+      }
+
+      .header-links {
+        max-width: 170px;
+      }
+
+      .map-window {
+        min-height: 550px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="brand">RD QUARTERS</div>
+
+    <div class="header-links">
+      <a class="header-link" href="knowledge-maze.html">
+        Knowledge Maze
+      </a>
+
+      <a class="header-link" href="launch-hub.html">
+        Launch Hub
+      </a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <p class="label">Personal Progress Map</p>
+
+    <h1>Neural Atlas</h1>
+
+    <p class="hero-description">
+      Explore a personalized map of illuminated brain regions,
+      knowledge pathways, cognitive domains and neural artifacts.
+      Every completed portal adds light, detail and connection.
+    </p>
+  </section>
+
+  <main>
+
+    <section class="traveler-panel">
+      <div class="traveler-row">
+
+        <div>
+          <p class="label">Traveler Profile</p>
+
+          <h2 id="traveler-name">
+            Loading Traveler
+          </h2>
+
+          <p>
+            Your illuminated regions and collected tokens are saved
+            privately on this device.
+          </p>
+        </div>
+
+        <div
+          class="traveler-code"
+          id="traveler-code"
+        >
+          Loading Progress
+        </div>
+
+      </div>
+
+      <div class="progress-track">
+        <div
+          class="progress-fill"
+          id="atlas-progress"
+        ></div>
+      </div>
+
+      <div class="progress-text">
+        <span id="progress-summary">
+          Reading neural atlas
+        </span>
+
+        <span id="progress-percent">
+          0%
+        </span>
+      </div>
+    </section>
+
+    <section class="atlas-panel">
+
+      <div class="atlas-heading">
+        <p class="label">Zoomable Knowledge Map</p>
+
+        <h2>Your Illuminated Brain</h2>
+
+        <p>
+          Tap a region to reveal its circuit, transmitter,
+          cognitive lesson and connected artwork portal.
+        </p>
+      </div>
+
+      <div class="map-window" id="map-window">
+
+        <div class="brain-map" id="brain-map">
+
+          <div class="brain-outline"></div>
+          <div class="hemisphere-line"></div>
+
+          <div class="pathway path-one active"></div>
+          <div class="pathway path-two active"></div>
+          <div class="pathway path-three"></div>
+          <div class="pathway path-four"></div>
+
+          <button
+            class="node prefrontal active"
+            data-region="prefrontal"
+          >
+            <span>
+              <strong>Prefrontal Cortex</strong>
+              <small>Illuminated</small>
+            </span>
+          </button>
+
+          <button
+            class="node amygdala active"
+            data-region="amygdala"
+          >
+            <span>
+              <strong>Amygdala</strong>
+              <small>Connected</small>
+            </span>
+          </button>
+
+          <button
+            class="node language"
+            data-region="language"
+          >
+            <span>
+              <strong>Language</strong>
+              <small>Locked</small>
+            </span>
+          </button>
+
+          <button
+            class="node memory"
+            data-region="memory"
+          >
+            <span>
+              <strong>Memory</strong>
+              <small>Locked</small>
+            </span>
+          </button>
+
+          <button
+            class="node creativity"
+            data-region="creativity"
+          >
+            <span>
+              <strong>Creativity</strong>
+              <small>Locked</small>
+            </span>
+          </button>
+
+          <button
+            class="node movement"
+            data-region="movement"
+          >
+            <span>
+              <strong>Movement</strong>
+              <small>Locked</small>
+            </span>
+          </button>
+
+          <button
+            class="node reward"
+            data-region="reward"
+          >
+            <span>
+              <strong>Reward</strong>
+              <small>Locked</small>
+            </span>
+          </button>
+
+        </div>
+
+        <div class="zoom-controls">
+          <button
+            class="zoom-button"
+            id="zoom-out"
+            aria-label="Zoom out"
+          >
+            −
+          </button>
+
+          <button
+            class="zoom-button"
+            id="zoom-reset"
+            aria-label="Reset zoom"
+          >
+            ○
+          </button>
+
+          <button
+            class="zoom-button"
+            id="zoom-in"
+            aria-label="Zoom in"
+          >
+            +
+          </button>
+        </div>
+
+      </div>
+
+      <div class="legend">
+
+        <div class="legend-item">
+          <span class="legend-dot active"></span>
+          Illuminated by your progress
+        </div>
+
+        <div class="legend-item">
+          <span class="legend-dot"></span>
+          Visible but not yet unlocked
+        </div>
+
+      </div>
+
+      <div
+        class="detail-panel show"
+        id="detail-panel"
+      >
+        <p class="label" id="detail-label">
+          Illuminated Region
+        </p>
+
+        <h3 id="detail-title">
+          Prefrontal Cortex
+        </h3>
+
+        <p id="detail-description">
+          This region supports planning, evaluation, attention
+          and deliberate control over reactions.
+        </p>
+
+        <p id="detail-circuit">
+          Associated circuit: Prefrontal–Amygdala Regulation
+        </p>
+
+        <p id="detail-transmitter">
+          Featured neurotransmitter: Glutamate
+        </p>
+
+        <a
+          class="detail-link"
+          id="detail-link"
+          href="portals/what-if-601.html"
+        >
+          Open What If 601
+        </a>
+      </div>
+
+    </section>
+
+    <section class="section">
+
+      <div class="section-heading">
+        <p class="label">Current Neural Signature</p>
+
+        <h2>What If 601</h2>
+
+        <p>
+          The first portal establishes the format used to illuminate
+          future circuits across the atlas.
+        </p>
+      </div>
+
+      <div class="grid">
+
+        <article class="card">
+          <p class="label">Primary Region</p>
+
+          <h3>Prefrontal Cortex</h3>
+
+          <p>
+            Associated with attention, planning, interpretation,
+            decision-making and regulation of emotional responses.
+          </p>
+
+          <span class="status">
+            Illuminated
+          </span>
+        </article>
+
+        <article class="card">
+          <p class="label">Associated Circuit</p>
+
+          <h3>Prefrontal–Amygdala Regulation</h3>
+
+          <p>
+            Symbolizes the movement from emotional urgency toward
+            deliberate interpretation and chosen direction.
+          </p>
+
+          <span class="status">
+            Pathway Active
+          </span>
+        </article>
+
+        <article class="card">
+          <p class="label">Featured Neurotransmitter</p>
+
+          <h3>Glutamate</h3>
+
+          <div
+            class="molecule"
+            aria-label="Stylized molecular symbol"
+          >
+            <div class="bond bond-one"></div>
+            <div class="bond bond-two"></div>
+            <div class="bond bond-three"></div>
+            <div class="bond bond-four"></div>
+
+            <div class="atom atom-one">N</div>
+            <div class="atom atom-two">O</div>
+            <div class="atom atom-three">O</div>
+            <div class="atom atom-four">C</div>
+          </div>
+
+          <p>
+            Glutamate is featured symbolically as a major excitatory
+            messenger supporting communication across cortical networks.
+            It represents the forward-driving signal of the Golden Prow.
+          </p>
+
+          <span class="status">
+            Neural Symbol 601
+          </span>
+        </article>
+
+      </div>
+
+    </section>
+
+    <section class="section">
+
+      <div class="section-heading">
+        <p class="label">Collected Inventory</p>
+
+        <h2>Neural Artifacts</h2>
+      </div>
+
+      <div class="grid">
+
+        <article class="card">
+          <p class="label">Token 601</p>
+
+          <h3>The Golden Prow</h3>
+
+          <p>
+            Represents cutting through mental pressure while preserving
+            deliberate direction and cognitive strength.
+          </p>
+
+          <span class="status">
+            Collected
+          </span>
+        </article>
+
+        <article class="card locked">
+          <div class="locked-symbol">◇</div>
+
+          <p class="label">Unknown Token</p>
+
+          <h3>Awaiting Discovery</h3>
+
+          <p>
+            Another artwork portal will reveal this artifact
+            and illuminate a different cognitive domain.
+          </p>
+
+          <span class="status">
+            Locked
+          </span>
+        </article>
+
+        <article class="card locked">
+          <div class="locked-symbol">△</div>
+
+          <p class="label">Unknown Token</p>
+
+          <h3>Pathway Concealed</h3>
+
+          <p>
+            Continue through the What If series to expose
+            additional regions and neural connections.
+          </p>
+
+          <span class="status">
+            Locked
+          </span>
+        </article>
+
+      </div>
+
+    </section>
+
+    <section class="section">
+
+      <div class="section-heading">
+        <p class="label">Domains Still Ahead</p>
+
+        <h2>Unexplored Knowledge</h2>
+
+        <p>
+          These regions remain visible so the traveler can see
+          how much of the greater map is still waiting.
+        </p>
+      </div>
+
+      <div class="grid">
+
+        <article class="card locked">
+          <h3>Memory and Recall</h3>
+
+          <p>
+            Future portals may explore stored experience,
+            pattern recognition and memory reconstruction.
+          </p>
+        </article>
+
+        <article class="card locked">
+          <h3>Language and Meaning</h3>
+
+          <p>
+            Hidden phonics, symbols and communication pathways
+            can gradually illuminate this domain.
+          </p>
+        </article>
+
+        <article class="card locked">
+          <h3>Creativity and Imagination</h3>
+
+          <p>
+            Future artwork will build bridges between symbolic thought,
+            visual invention and new cognitive combinations.
+          </p>
+        </article>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="rd">RD</div>
+
+    <p>
+      Personal Neural Atlas · RD Quarters
+    </p>
+
+    <p>
+      © 2026 RD Quarters. All rights reserved.
+    </p>
+  </footer>
+
+  <script>
+    const storageKey = "rdQuartersTraveler";
+
+    function createTravelerId() {
+      const characters =
+        "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+
+      let code = "";
+
+      for (let i = 0; i < 6; i++) {
+        code += characters.charAt(
+          Math.floor(
+            Math.random() * characters.length
+          )
+        );
+      }
+
+      return "Traveler " + code;
+    }
+
+    let traveler;
+
+    try {
+      traveler = JSON.parse(
+        localStorage.getItem(storageKey)
+      );
+    } catch (error) {
+      traveler = null;
+    }
+
+    if (!traveler) {
+      traveler = {
+        id: createTravelerId(),
+        visitedPortals: [],
+        tokens: [],
+        illumination: 0,
+        lastVisit: ""
+      };
+    }
+
+    traveler.id =
+      traveler.id || createTravelerId();
+
+    traveler.visitedPortals =
+      traveler.visitedPortals || [];
+
+    traveler.tokens =
+      traveler.tokens || [];
+
+    traveler.illumination =
+      Number(traveler.illumination) || 0;
+
+    traveler.lastVisit =
+      new Date().toISOString();
+
+    localStorage.setItem(
+      storageKey,
+      JSON.stringify(traveler)
+    );
+
+    const illumination = Math.min(
+      100,
+      traveler.illumination
+    );
+
+    document.getElementById(
+      "traveler-name"
+    ).textContent = traveler.id;
+
+    document.getElementById(
+      "traveler-code"
+    ).textContent =
+      traveler.visitedPortals.length +
+      " portal recorded";
+
+    document.getElementById(
+      "atlas-progress"
+    ).style.width = illumination + "%";
+
+    document.getElementById(
+      "progress-percent"
+    ).textContent = illumination + "%";
+
+    document.getElementById(
+      "progress-summary"
+    ).textContent =
+      traveler.tokens.length +
+      " token collected · " +
+      traveler.visitedPortals.length +
+      " portal explored";
+
+    const details = {
+      prefrontal: {
+        label: "Illuminated Region",
+        title: "Prefrontal Cortex",
+        description:
+          "This region supports planning, evaluation, attention and deliberate control over reactions.",
+        circuit:
+          "Associated circuit: Prefrontal–Amygdala Regulation",
+        transmitter:
+          "Featured neurotransmitter: Glutamate",
+        href:
+          "portals/what-if-601.html",
+        link:
+          "Open What If 601"
+      },
+
+      amygdala: {
+        label: "Connected Region",
+        title: "Amygdala",
+        description:
+          "This region contributes to emotional importance, urgency and threat processing. Portal 601 symbolically links it with deliberate reappraisal.",
+        circuit:
+          "Associated circuit: Emotional Salience and Regulation",
+        transmitter:
+          "Featured signaling context: Excitatory and inhibitory balance",
+        href:
+          "portals/what-if-601.html",
+        link:
+          "Review Portal 601"
+      },
+
+      language: {
+        label: "Locked Domain",
+        title: "Language and Meaning",
+        description:
+          "Future portals involving phonics, interpretation and communication can illuminate this region.",
+        circuit:
+          "Associated network: Language Processing",
+        transmitter:
+          "Featured transmitter not yet revealed",
+        href:
+          "whatif.html",
+        link:
+          "Explore What If Series"
+      },
+
+      memory: {
+        label: "Locked Domain",
+        title: "Memory and Recall",
+        description:
+          "Future knowledge portals can reveal pathways involving memory formation, recall and pattern recognition.",
+        circuit:
+          "Associated network: Memory Systems",
+        transmitter:
+          "Featured transmitter not yet revealed",
+        href:
+          "whatif.html",
+        link:
+          "Explore What If Series"
+      },
+
+      creativity: {
+        label: "Locked Domain",
+        title: "Creativity and Imagination",
+        description:
+          "Future artwork can illuminate networks involved in symbolic combinations, imagination and invention.",
+        circuit:
+          "Associated network: Creative Integration",
+        transmitter:
+          "Featured transmitter not yet revealed",
+        href:
+          "art-lines.html",
+        link:
+          "View Art Lines"
+      },
+
+      movement: {
+        label: "Locked Domain",
+        title: "Movement and Action",
+        description:
+          "Future lessons can explore action, coordination, embodiment and the translation of intention into movement.",
+        circuit:
+          "Associated network: Motor Control",
+        transmitter:
+          "Featured transmitter not yet revealed",
+        href:
+          "knowledge-maze.html",
+        link:
+          "Return to Maze"
+      },
+
+      reward: {
+        label: "Locked Domain",
+        title: "Motivation and Reward",
+        description:
+          "Future portals can explore desire, reinforcement, persistence and the pursuit of meaningful goals.",
+        circuit:
+          "Associated network: Reward and Motivation",
+        transmitter:
+          "Featured transmitter not yet revealed",
+        href:
+          "knowledge-maze.html",
+        link:
+          "Return to Maze"
+      }
+    };
+
+    const nodes =
+      document.querySelectorAll(".node");
+
+    nodes.forEach(function(node) {
+      node.addEventListener(
+        "click",
+        function() {
+          const region =
+            node.dataset.region;
+
+          const detail =
+            details[region];
+
+          document.getElementById(
+            "detail-label"
+          ).textContent = detail.label;
+
+          document.getElementById(
+            "detail-title"
+          ).textContent = detail.title;
+
+          document.getElementById(
+            "detail-description"
+          ).textContent =
+            detail.description;
+
+          document.getElementById(
+            "detail-circuit"
+          ).textContent =
+            detail.circuit;
+
+          document.getElementById(
+            "detail-transmitter"
+          ).textContent =
+            detail.transmitter;
+
+          const detailLink =
+            document.getElementById(
+              "detail-link"
+            );
+
+          detailLink.href =
+            detail.href;
+
+          detailLink.textContent =
+            detail.link;
+
+          document.getElementById(
+            "detail-panel"
+          ).classList.add("show");
+        }
+      );
+    });
+
+    let scale = 1;
+
+    const brainMap =
+      document.getElementById("brain-map");
+
+    function applyZoom() {
+      brainMap.style.transform =
+        "scale(" + scale + ")";
+    }
+
+    document.getElementById(
+      "zoom-in"
+    ).addEventListener(
+      "click",
+      function() {
+        scale = Math.min(1.65, scale + 0.15);
+        applyZoom();
+      }
+    );
+
+    document.getElementById(
+      "zoom-out"
+    ).addEventListener(
+      "click",
+      function() {
+        scale = Math.max(0.7, scale - 0.15);
+        applyZoom();
+      }
+    );
+
+    document.getElementById(
+      "zoom-reset"
+    ).addEventListener(
+      "click",
+      function() {
+        scale = 1;
+        applyZoom();
+      }
+    );
+  </script>
+
+</body>
+</html>
