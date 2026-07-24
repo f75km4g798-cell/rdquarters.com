@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="robots"
+    content="noindex, nofollow"
+  >
+
+  <title>Custom Bag System | RD Quarters</title>
+
+  <style>
+    :root {
+      --black: #050504;
+      --panel: #19150d;
+      --gold: #ddb24c;
+      --light: #f2d487;
+      --cream: #f3e7c9;
+      --muted: #aa9b7c;
+      --border: rgba(221, 178, 76, 0.5);
+      --dim: rgba(221, 178, 76, 0.22);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+
+      background:
+        radial-gradient(
+          circle at top,
+          rgba(221, 178, 76, 0.14),
+          transparent 32rem
+        ),
+        var(--black);
+
+      color: var(--cream);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.65;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      padding: 16px 22px;
+      background: rgba(5, 5, 4, 0.97);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .brand {
+      color: var(--gold);
+      font-weight: bold;
+      letter-spacing: 0.18em;
+    }
+
+    .header-links {
+      display: flex;
+      gap: 9px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .header-link {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 8px 13px;
+      font-size: 0.88rem;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 72px 22px 52px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .label {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.23em;
+      font-size: 0.74rem;
+    }
+
+    h1 {
+      color: var(--light);
+      font-size: clamp(3rem, 11vw, 5.7rem);
+      line-height: 1;
+      margin: 16px 0 22px;
+    }
+
+    .hero-description {
+      max-width: 770px;
+      margin: auto;
+      color: var(--muted);
+    }
+
+    main {
+      width: min(1040px, calc(100% - 40px));
+      margin: auto;
+      padding: 46px 0 82px;
+    }
+
+    .priority,
+    .card,
+    .bag-stage {
+      background:
+        linear-gradient(
+          145deg,
+          rgba(221, 178, 76, 0.08),
+          transparent 55%
+        ),
+        var(--panel);
+
+      border: 1px solid var(--border);
+      border-radius: 24px;
+    }
+
+    .priority {
+      padding: 26px;
+      margin-bottom: 28px;
+    }
+
+    .priority h2 {
+      color: var(--light);
+      margin: 8px 0 13px;
+      font-size: 1.8rem;
+    }
+
+    .priority p {
+      color: var(--muted);
+    }
+
+    .bag-stage {
+      padding: 28px;
+      margin-bottom: 30px;
+    }
+
+    .bag-stage-heading {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .bag-stage-heading h2 {
+      color: var(--light);
+      font-size: 2rem;
+      margin: 8px 0;
+    }
+
+    .bag-stage-heading p {
+      color: var(--muted);
+    }
+
+    .bag-layout {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .bag {
+      position: relative;
+      min-height: 610px;
+      padding: 28px 24px;
+      overflow: hidden;
+
+      background:
+        radial-gradient(
+          circle at 50% 30%,
+          rgba(221, 178, 76, 0.15),
+          transparent 14rem
+        ),
+        #080805;
+
+      border: 2px solid var(--gold);
+      border-radius: 30px 30px 22px 22px;
+
+      box-shadow:
+        0 0 35px rgba(221, 178, 76, 0.08),
+        inset 0 0 45px rgba(221, 178, 76, 0.04);
+    }
+
+    .seal-line {
+      height: 8px;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 25px;
+    }
+
+    .bag-side {
+      color: var(--gold);
+      text-align: center;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+    }
+
+    .bag-title {
+      color: var(--light);
+      text-align: center;
+      font-size: 2.35rem;
+      line-height: 1.05;
+      margin: 18px 0 8px;
+    }
+
+    .bag-region {
+      text-align: center;
+      color: var(--gold);
+      font-weight: bold;
+      font-size: 1.2rem;
+      letter-spacing: 0.17em;
+    }
+
+    .emblem {
+      width: 160px;
+      height: 160px;
+      margin: 35px auto 30px;
+      border: 2px solid var(--gold);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      color: var(--light);
+
+      box-shadow:
+        0 0 0 13px rgba(221, 178, 76, 0.04),
+        0 0 35px rgba(221, 178, 76, 0.12);
+    }
+
+    .emblem strong {
+      display: block;
+      font-size: 2.2rem;
+    }
+
+    .emblem small {
+      display: block;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+    }
+
+    .strain-window {
+      margin-top: 28px;
+      padding: 18px;
+      background: rgba(25, 21, 13, 0.88);
+      border: 1px solid var(--dim);
+      border-radius: 18px;
+      text-align: center;
+    }
+
+    .strain-window strong {
+      color: var(--light);
+      display: block;
+      font-size: 1.35rem;
+      margin-bottom: 5px;
+    }
+
+    .strain-window span {
+      color: var(--muted);
+    }
+
+    .weight-mark {
+      position: absolute;
+      left: 22px;
+      bottom: 22px;
+      width: 64px;
+      height: 64px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      color: var(--gold);
+      font-weight: bold;
+    }
+
+    .qr-mark {
+      position: absolute;
+      right: 22px;
+      bottom: 22px;
+      width: 108px;
+      height: 108px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 10px;
+
+      background: var(--cream);
+      color: #090805;
+      border: 7px solid var(--cream);
+      outline: 1px solid var(--border);
+    }
+
+    .qr-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      width: 72px;
+      height: 72px;
+      gap: 3px;
+    }
+
+    .qr-grid span {
+      background: #090805;
+    }
+
+    .qr-grid span:nth-child(2),
+    .qr-grid span:nth-child(4),
+    .qr-grid span:nth-child(6),
+    .qr-grid span:nth-child(8),
+    .qr-grid span:nth-child(12),
+    .qr-grid span:nth-child(14),
+    .qr-grid span:nth-child(18),
+    .qr-grid span:nth-child(20),
+    .qr-grid span:nth-child(22),
+    .qr-grid span:nth-child(24) {
+      background: transparent;
+    }
+
+    .back-section {
+      margin-top: 22px;
+      padding: 17px;
+      border: 1px solid var(--dim);
+      border-radius: 17px;
+    }
+
+    .back-section h3 {
+      color: var(--light);
+      margin-bottom: 8px;
+    }
+
+    .back-section p {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .back-list {
+      margin: 9px 0 0 18px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .back-list li {
+      margin-bottom: 5px;
+    }
+
+    .warning-area {
+      margin-top: 22px;
+      padding: 15px;
+      border: 1px dashed var(--border);
+      border-radius: 16px;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 21px;
+    }
+
+    .card {
+      padding: 24px;
+    }
+
+    .card h2 {
+      color: var(--light);
+      margin: 8px 0 13px;
+      font-size: 1.65rem;
+    }
+
+    .card p {
+      color: var(--muted);
+    }
+
+    .card ul {
+      margin: 17px 0 0 20px;
+      color: var(--muted);
+    }
+
+    .card li {
+      margin-bottom: 7px;
+    }
+
+    .status {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 6px 10px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--gold);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+    }
+
+    .full {
+      margin-top: 22px;
+    }
+
+    .route {
+      display: inline-block;
+      margin-top: 17px;
+      padding: 10px 15px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--gold);
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      padding: 38px 20px 48px;
+    }
+
+    .rd {
+      color: var(--gold);
+      font-size: 1.7rem;
+      font-weight: bold;
+      letter-spacing: 0.2em;
+    }
+
+    @media (max-width: 760px) {
+      header {
+        align-items: flex-start;
+      }
+
+      .header-links {
+        max-width: 165px;
+      }
+
+      .bag-layout,
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .bag {
+        min-height: 610px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="brand">RD QUARTERS</div>
+
+    <div class="header-links">
+      <a class="header-link" href="launch-hub.html">
+        Launch Hub
+      </a>
+
+      <a class="header-link" href="current-strain.html">
+        Product Info
+      </a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <p class="label">Packaging Foundation</p>
+
+    <h1>Custom Bag System</h1>
+
+    <p class="hero-description">
+      A reusable packaging framework connecting the Hudson and 518
+      identity, current educational product information, permanent QR
+      destinations and future RD Quarters artwork collaborations.
+    </p>
+  </section>
+
+  <main>
+
+    <section class="priority">
+      <p class="label">Launch Objective</p>
+
+      <h2>One Bag Structure, Changing Product Identity</h2>
+
+      <p>
+        The bag design remains consistent while the strain name,
+        educational profile and related visual identity can change.
+        The permanent product QR continues pointing to the current
+        information page, preventing the packaging system from needing
+        to be rebuilt for every update.
+      </p>
+    </section>
+
+    <section class="bag-stage">
+
+      <div class="bag-stage-heading">
+        <p class="label">Concept Layout</p>
+
+        <h2>Front and Back Packaging Map</h2>
+
+        <p>
+          This is a structural preview for planning placement before
+          the finished logo artwork and real QR image are added.
+        </p>
+      </div>
+
+      <div class="bag-layout">
+
+        <article class="bag">
+
+          <div class="seal-line"></div>
+
+          <p class="bag-side">Front Design</p>
+
+          <h2 class="bag-title">
+            Hudson<br>
+            Reserve
+          </h2>
+
+          <p class="bag-region">518</p>
+
+          <div class="emblem">
+            <div>
+              <strong>RD</strong>
+              <small>Primary Logo</small>
+            </div>
+          </div>
+
+          <div class="strain-window">
+            <strong>Current Profile</strong>
+            <span>
+              Reusable strain-name and educational-information area
+            </span>
+          </div>
+
+          <div class="weight-mark">
+            3.5g
+          </div>
+
+          <div class="qr-mark">
+            <div class="qr-grid">
+              <span></span><span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+
+        </article>
+
+        <article class="bag">
+
+          <div class="seal-line"></div>
+
+          <p class="bag-side">Back Design</p>
+
+          <h2 class="bag-title">
+            Product<br>
+            Knowledge
+          </h2>
+
+          <div class="back-section">
+            <h3>Profile Information</h3>
+
+            <p>
+              Space for general educational characteristics,
+              lineage notes and product-identification information.
+            </p>
+          </div>
+
+          <div class="back-section">
+            <h3>QR Destination</h3>
+
+            <p>
+              The permanent code points to:
+            </p>
+
+            <ul class="back-list">
+              <li>Current strain-information menu</li>
+              <li>Individual archived profiles</li>
+              <li>Educational notes</li>
+              <li>RD Quarters digital identity</li>
+            </ul>
+          </div>
+
+          <div class="back-section">
+            <h3>Batch and Record Area</h3>
+
+            <p>
+              Reserved space for legally required information,
+              batch details and other market-specific labeling.
+            </p>
+          </div>
+
+          <div class="warning-area">
+            Final packaging must be reviewed for all required state,
+            local, child-resistant and regulated-product labeling
+            requirements before manufacturing or distribution.
+          </div>
+
+          <div class="weight-mark">
+            518
+          </div>
+
+          <div class="qr-mark">
+            <div class="qr-grid">
+              <span></span><span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+
+        </article>
+
+      </div>
+
+    </section>
+
+    <section class="grid">
+
+      <article class="card">
+        <p class="label">Primary QR</p>
+
+        <h2>Current Product Information</h2>
+
+        <p>
+          The main packaging QR remains permanent and directs visitors
+          to the current educational profile menu.
+        </p>
+
+        <a class="route" href="current-strain.html">
+          Open QR Destination
+        </a>
+      </article>
+
+      <article class="card">
+        <p class="label">Artwork QR</p>
+
+        <h2>Optional Numbered Portal Mark</h2>
+
+        <p>
+          Special-edition bags may include a second, smaller QR connecting
+          the package to a numbered artwork, author note, token and
+          Knowledge Maze portal.
+        </p>
+
+        <a class="route" href="portals/what-if-601.html">
+          View Portal Example
+        </a>
+      </article>
+
+      <article class="card">
+        <p class="label">Front Identity</p>
+
+        <h2>Permanent Brand Elements</h2>
+
+        <ul>
+          <li>Hudson identity</li>
+          <li>518 regional mark</li>
+          <li>Primary RD Quarters logo</li>
+          <li>Consistent placement system</li>
+          <li>Reusable product-name area</li>
+        </ul>
+
+        <span class="status">Foundation Set</span>
+      </article>
+
+      <article class="card">
+        <p class="label">Back Identity</p>
+
+        <h2>Changing Information Areas</h2>
+
+        <ul>
+          <li>Educational product profile</li>
+          <li>Lineage or classification notes</li>
+          <li>Batch-information area</li>
+          <li>Required warning area</li>
+          <li>Permanent QR destination</li>
+        </ul>
+
+        <span class="status">Template Ready</span>
+      </article>
+
+    </section>
+
+    <article class="card full">
+      <p class="label">Connected Launch Map</p>
+
+      <h2>Packaging, Art and Apparel</h2>
+
+      <p>
+        The product bag uses its main QR for current product information.
+        Special editions can add a numbered What If portal mark. That same
+        artwork number can then appear on a matching shirt, print,
+        certificate and Neural Atlas reward.
+      </p>
+
+      <p>
+        This keeps the custom-bag launch upfront while allowing the
+        larger RD Quarters art and education system to expand around it.
+      </p>
+
+      <a class="route" href="launch-hub.html">
+        Return to Launch Hub
+      </a>
+    </article>
+
+  </main>
+
+  <footer>
+    <div class="rd">RD</div>
+
+    <p>
+      Custom Bag System · RD Quarters
+    </p>
+
+    <p>
+      © 2026 RD Quarters. All rights reserved.
+    </p>
+  </footer>
+
+</body>
+</html>
