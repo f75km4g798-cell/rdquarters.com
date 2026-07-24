@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Strain Passport | RD Quarters</title>
+  <meta name="description" content="Anonymous strain passport and living strain tree for RD Quarters. Track collected strains, unlock ranks, and grow from rookie to legend.">
+  <style>
+    :root {
+      --black: #050505;
+      --panel: #120e07;
+      --panel-2: #181108;
+      --gold: #e1b75c;
+      --gold-soft: #c7a157;
+      --gold-dim: #8e7239;
+      --text: #f0e3bf;
+      --muted: #bca57a;
+      --line: rgba(225,183,92,0.42);
+      --glow: 0 0 20px rgba(225,183,92,0.18);
+      --radius: 28px;
+      --shadow: 0 24px 60px rgba(0,0,0,0.45);
+      --green: #4caf50;
+      --mid: #caa44f;
+      --low: #8c6b35;
+      --locked: #2b2417;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background:
+        radial-gradient(circle at top, rgba(225,183,92,0.08), transparent 35%),
+        linear-gradient(180deg, #000 0%, #050505 100%);
+      color: var(--text);
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    body {
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .wrap {
+      width: min(1120px, calc(100% - 28px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      border-bottom: 1px solid var(--line);
+      background: rgba(0,0,0,0.88);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(10px);
+    }
+
+    .topbar-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 20px 0;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      font-size: clamp(1.4rem, 2vw, 2.2rem);
+      letter-spacing: 0.24em;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .nav {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 14px 22px;
+      color: var(--text);
+      font-size: 1rem;
+      background: rgba(225,183,92,0.05);
+      transition: 0.25s ease;
+    }
+
+    .nav a:hover {
+      transform: translateY(-1px);
+      border-color: var(--gold);
+      box-shadow: var(--glow);
+    }
+
+    .hero {
+      padding: 78px 0 34px;
+      text-align: center;
+      border-bottom: 1px solid var(--line);
+      background:
+        radial-gradient(circle at center, rgba(225,183,92,0.09), transparent 45%);
+    }
+
+    .eyebrow {
+      color: var(--gold);
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.9rem, 8vw, 5.5rem);
+      line-height: 0.95;
+      color: #f0cf7c;
+      text-shadow: 0 0 28px rgba(225,183,92,0.09);
+    }
+
+    .hero p {
+      width: min(820px, 100%);
+      margin: 26px auto 0;
+      color: var(--muted);
+      font-size: clamp(1.15rem, 2vw, 1.5rem);
+      line-height: 1.75;
+    }
+
+    .section {
+      padding: 34px 0;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 24px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      background:
+        radial-gradient(circle at top, rgba(225,183,92,0.08), transparent 40%),
+        linear-gradient(180deg, var(--panel) 0%, #080603 100%);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      border-radius: inherit;
+      box-shadow: inset 0 0 0 1px rgba(225,183,92,0.04);
+    }
+
+    .card-label {
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.26em;
+      font-size: 0.88rem;
+      margin-bottom: 18px;
+    }
+
+    .traveler-name {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      color: #f1cf80;
+      margin: 0 0 12px;
+      line-height: 1.05;
+    }
+
+    .muted {
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 1.08rem;
+    }
+
+    .pill-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .pill {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 12px 18px;
+      color: var(--gold);
+      background: rgba(225,183,92,0.06);
+      font-size: 0.98rem;
+      letter-spacing: 0.05em;
+    }
+
+    .rank-badge {
+      display: inline-block;
+      margin: 12px 0 18px;
+      border: 1px solid rgba(225,183,92,0.55);
+      background: linear-gradient(90deg, rgba(225,183,92,0.18), rgba(225,183,92,0.04));
+      color: #f3d58d;
+      padding: 13px 20px;
+      border-radius: 999px;
+      font-weight: bold;
+      letter-spacing: 0.05em;
+      box-shadow: var(--glow);
+    }
+
+    .progress-wrap {
+      margin-top: 18px;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 20px;
+      border-radius: 999px;
+      background: #040403;
+      border: 1px solid var(--line);
+      overflow: hidden;
+      box-shadow: inset 0 0 0 1px rgba(225,183,92,0.06);
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background:
+        linear-gradient(90deg, #9c7424 0%, #e1b75c 45%, #f7df9f 100%);
+      box-shadow: 0 0 26px rgba(225,183,92,0.45);
+      transition: width 0.45s ease;
+    }
+
+    .progress-caption {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+      color: var(--gold);
+      font-size: 0.98rem;
+    }
+
+    .rank-list {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 0;
+      display: grid;
+      gap: 12px;
+    }
+
+    .rank-list li {
+      border: 1px solid rgba(225,183,92,0.18);
+      border-radius: 18px;
+      padding: 14px 16px;
+      background: rgba(255,255,255,0.02);
+      color: var(--muted);
+    }
+
+    .rank-list strong {
+      color: #f2ce7c;
+      display: block;
+      margin-bottom: 6px;
+      font-size: 1.02rem;
+    }
+
+    .tree-wrap {
+      margin-top: 10px;
+      padding-top: 10px;
+    }
+
+    .tree-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .tree-node {
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(225,183,92,0.08), rgba(0,0,0,0.25));
+      padding: 20px;
+      min-height: 200px;
+      position: relative;
+      transition: 0.25s ease;
+    }
+
+    .tree-node.locked {
+      background: linear-gradient(180deg, rgba(40,28,10,0.35), rgba(0,0,0,0.22));
+      border-color: rgba(225,183,92,0.14);
+      opacity: 0.7;
+    }
+
+    .tree-node.unlocked {
+      box-shadow: 0 0 0 1px rgba(225,183,92,0.15), 0 0 28px rgba(225,183,92,0.18);
+    }
+
+    .tree-node:hover {
+      transform: translateY(-2px);
+    }
+
+    .tree-node h3 {
+      margin: 0 0 8px;
+      color: #f0cb75;
+      font-size: 1.55rem;
+    }
+
+    .tree-node .sub {
+      color: var(--muted);
+      margin: 0 0 14px;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .mini-tag {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      font-size: 0.85rem;
+      color: var(--gold);
+      margin: 4px 6px 0 0;
+    }
+
+    .branch-title {
+      margin: 44px 0 14px;
+      font-size: clamp(2rem, 5vw, 3rem);
+      color: #f2cd78;
+    }
+
+    .strain-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .strain-card {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 22px;
+      background: linear-gradient(180deg, rgba(225,183,92,0.08), rgba(0,0,0,0.2));
+      box-shadow: inset 0 0 0 1px rgba(225,183,92,0.04);
+    }
+
+    .strain-card h4 {
+      margin: 0 0 8px;
+      color: #f0cb75;
+      font-size: 1.7rem;
+      line-height: 1.1;
+    }
+
+    .strain-meta {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .grade {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.86rem;
+      font-weight: bold;
+      letter-spacing: 0.06em;
+      border: 1px solid transparent;
+      text-transform: uppercase;
+    }
+
+    .grade.high {
+      color: #f5dc9b;
+      border-color: rgba(225,183,92,0.45);
+      background: rgba(225,183,92,0.10);
+    }
+
+    .grade.mid {
+      color: #e8c677;
+      border-color: rgba(202,164,79,0.35);
+      background: rgba(202,164,79,0.10);
+    }
+
+    .grade.low {
+      color: #c7a36d;
+      border-color: rgba(140,107,53,0.35);
+      background: rgba(140,107,53,0.10);
+    }
+
+    .strain-card p {
+      color: var(--muted);
+      line-height: 1.75;
+      margin: 0 0 18px;
+      font-size: 1rem;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    button, .btn-link {
+      appearance: none;
+      border: 1px solid var(--line);
+      background: rgba(225,183,92,0.06);
+      color: #f4d589;
+      border-radius: 999px;
+      padding: 13px 18px;
+      font-family: inherit;
+      font-size: 0.98rem;
+      cursor: pointer;
+      transition: 0.25s ease;
+    }
+
+    button:hover, .btn-link:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--glow);
+      border-color: var(--gold);
+    }
+
+    button.collected {
+      background: linear-gradient(90deg, rgba(225,183,92,0.22), rgba(225,183,92,0.07));
+      color: #fff0c6;
+    }
+
+    .inventory-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    .inventory-item {
+      border: 1px solid rgba(225,183,92,0.18);
+      border-radius: 18px;
+      padding: 16px;
+      background: rgba(255,255,255,0.02);
+    }
+
+    .inventory-item strong {
+      display: block;
+      color: #f0cc78;
+      margin-bottom: 4px;
+    }
+
+    .locked-note {
+      color: #7c6641;
+      font-style: italic;
+    }
+
+    .footer-note {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 0.97rem;
+      line-height: 1.8;
+    }
+
+    .control-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 22px;
+    }
+
+    .hero-score {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .hero-stat {
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 18px 16px;
+      background: rgba(225,183,92,0.06);
+    }
+
+    .hero-stat .num {
+      color: #f5d991;
+      font-size: 2rem;
+      font-weight: bold;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .hero-stat .lab {
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.82rem;
+    }
+
+    @media (max-width: 920px) {
+      .grid-2,
+      .grid-3,
+      .tree-grid,
+      .strain-grid,
+      .inventory-list,
+      .hero-score {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 62px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <div class="brand">RD QUARTERS</div>
+      <nav class="nav">
+        <a href="index.html">Return Home</a>
+        <a href="launch-hub.html">Launch Hub</a>
+        <a href="current-strains.html">Current Strains</a>
+        <a href="neural-atlas.html">Neural Atlas</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">Anonymous Collector System</div>
+      <h1>Strain Passport</h1>
+      <p>
+        Begin as a rookie traveler and evolve into a living legend. Each unique strain you collect
+        adds a stamp to your passport, unlocks branches on the Living Strain Tree, and advances your
+        hero rank through the RD Quarters world.
+      </p>
+
+      <div class="hero-score">
+        <div class="hero-stat">
+          <div class="num" id="heroCollected">0</div>
+          <div class="lab">Unique Strains Collected</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num" id="heroRank">Seedling</div>
+          <div class="lab">Current Title</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num" id="heroUnlocked">1</div>
+          <div class="lab">Tree Branches Lit</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="wrap">
+    <section class="section grid-2">
+      <div class="card">
+        <div class="card-label">Traveler Profile</div>
+        <h2 class="traveler-name" id="travelerName">Traveler</h2>
+        <div class="rank-badge" id="rankBadge">Seedling Initiate</div>
+        <p class="muted">
+          Your passport lives privately on this device. No invasive signup. No personal information required.
+          Each time a strain is added, your journey grows, your status rises, and new parts of the living tree illuminate.
+        </p>
+
+        <div class="pill-row">
+          <div class="pill" id="passportCount">0 Passport Stamps</div>
+          <div class="pill" id="flavorCount">0 Flavor Branches</div>
+          <div class="pill" id="gradeCount">0 Grade Levels Touched</div>
+        </div>
+
+        <div class="progress-wrap">
+          <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+          <div class="progress-caption">
+            <span id="progressText">0% toward next title</span>
+            <span id="nextRankText">Next rank: Flavor Scout</span>
+          </div>
+        </div>
+
+        <div class="control-row">
+          <button id="resetPassport">Reset Passport</button>
+        </div>
+
+        <p class="footer-note">
+          The feeling should be progression, return, curiosity and identity: the more strains a traveler explores,
+          the more their path becomes their own personal legend.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Hero Progression Path</div>
+        <ul class="rank-list">
+          <li><strong>Seedling Initiate</strong> First spark. The traveler has entered the garden.</li>
+          <li><strong>Flavor Scout</strong> The senses begin to separate aroma, sweetness, gas and fruit.</li>
+          <li><strong>Branch Walker</strong> Multiple strain families are unlocked. The tree begins to glow.</li>
+          <li><strong>Cultivar Knight</strong> Experience now stretches across grades, flavors and profiles.</li>
+          <li><strong>Emerald Champion</strong> The traveler becomes a recognized pathfinder in the passport.</li>
+          <li><strong>Living Legend</strong> Full presence. The tree is nearly complete and the story is self-made.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="card">
+        <div class="card-label">Living Strain Tree</div>
+        <h2 class="branch-title">Branch of Senses and Status</h2>
+        <p class="muted">
+          Every collected strain lights at least one branch of the tree. Some strains strengthen fruit, dessert and gas routes.
+          Others broaden your grade exposure. As more branches awaken, the traveler’s legend deepens.
+        </p>
+
+        <div class="tree-wrap">
+          <div class="tree-grid">
+            <div class="tree-node unlocked" id="branch-fruit">
+              <h3>Fruit Branch</h3>
+              <p class="sub">Sweet berry, citrus, cherry and candy expressions.</p>
+              <span class="mini-tag" id="fruitStatus">Visible</span>
+            </div>
+
+            <div class="tree-node locked" id="branch-dessert">
+              <h3>Dessert Branch</h3>
+              <p class="sub">Creamy, cookie, pastry and confection profiles.</p>
+              <span class="mini-tag" id="dessertStatus">Locked</span>
+            </div>
+
+            <div class="tree-node locked" id="branch-gas">
+              <h3>Gas Branch</h3>
+              <p class="sub">Fuel, skunk, pressure and potency energy.</p>
+              <span class="mini-tag" id="gasStatus">Locked</span>
+            </div>
+
+            <div class="tree-node locked" id="branch-classic">
+              <h3>Classic Branch</h3>
+              <p class="sub">Traditional backbone strains and timeless lineage presence.</p>
+              <span class="mini-tag" id="classicStatus">Locked</span>
+            </div>
+
+            <div class="tree-node locked" id="branch-grades">
+              <h3>Grade Ladder</h3>
+              <p class="sub">High, mid and low classifications begin to build real-world experience.</p>
+              <span class="mini-tag" id="gradeStatus">Locked</span>
+            </div>
+
+            <div class="tree-node locked" id="branch-legend">
+              <h3>Legend Crown</h3>
+              <p class="sub">Reserved for travelers whose stamps span the full known collection.</p>
+              <span class="mini-tag" id="legendStatus">Locked</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="card">
+        <div class="card-label">Current Passport Entries</div>
+        <h2 class="branch-title">Claim Your Strains</h2>
+        <p class="muted">
+          Each button below acts like a passport stamp. A traveler can claim a strain once.
+          Once collected, that strain helps unlock hero progression and tree branches.
+        </p>
+
+        <div class="strain-grid" id="strainGrid"></div>
+      </div>
+    </section>
+
+    <section class="section grid-2">
+      <div class="card">
+        <div class="card-label">Collected Inventory</div>
+        <h2 class="branch-title" style="margin-top:0;">Passport Stamps</h2>
+        <div class="inventory-list" id="inventoryList"></div>
+        <p class="footer-note" id="emptyInventoryNote">
+          No strains recorded yet. Claim your first strain to begin the story.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-label">System Notes</div>
+        <h2 class="branch-title" style="margin-top:0;">Why This Works</h2>
+        <p class="muted">
+          This structure gives users a reason to come back. It creates identity, visible growth,
+          unlockable branches, sensory classification, and a hero journey tied directly to your strain world.
+        </p>
+        <div class="pill-row">
+          <div class="pill">Anonymous</div>
+          <div class="pill">Device-Saved</div>
+          <div class="pill">Replayable</div>
+          <div class="pill">Hero Progression</div>
+          <div class="pill">Return Incentive</div>
+        </div>
+        <p class="footer-note">
+          Later, you can connect QR scans so each real bag automatically activates a passport stamp instead of pressing buttons.
+          That would make the system even more powerful.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const strains = [
+      {
+        id: "pink-runtz",
+        name: "Pink Runtz",
+        grade: "high",
+        notes: "Candy-fruit profile with sweet pressure and colorful appeal. A strong passport identity piece.",
+        branchTags: ["Fruit Branch", "Dessert Branch"],
+        branchKeys: ["fruit", "dessert"],
+        link: "strains/pink-runtz.html"
+      },
+      {
+        id: "lemon-cherry-gelato",
+        name: "Lemon Cherry Gelato",
+        grade: "mid",
+        notes: "A fruit-forward dessert lane with citrus-cherry expression and creamy crossover.",
+        branchTags: ["Fruit Branch", "Dessert Branch"],
+        branchKeys: ["fruit", "dessert"],
+        link: "strains/lemon-cherry-gelato.html"
+      },
+      {
+        id: "legendary-jack",
+        name: "Legendary Jack",
+        grade: "low",
+        notes: "Classic lineage energy with a more traditional and familiar strain character.",
+        branchTags: ["Classic Branch"],
+        branchKeys: ["classic"],
+        link: "strains/legendary-jack.html"
+      },
+      {
+        id: "jelly-donut",
+        name: "Jelly Donut",
+        grade: "high",
+        notes: "Sugary dessert direction with sweet bakery tones and a collectible feel.",
+        branchTags: ["Dessert Branch"],
+        branchKeys: ["dessert"],
+        link: "strains/jelly-donut.html"
+      },
+      {
+        id: "moon-cookies",
+        name: "Moon Cookies",
+        grade: "mid",
+        notes: "Cookie-and-gas fusion with a rounder body and a darker flavor lane.",
+        branchTags: ["Dessert Branch", "Gas Branch"],
+        branchKeys: ["dessert", "gas"],
+        link: "strains/moon-cookies.html"
+      }
+    ];
+
+    const ranks = [
+      { name: "Seedling Initiate", min: 0 },
+      { name: "Flavor Scout", min: 1 },
+      { name: "Branch Walker", min: 2 },
+      { name: "Cultivar Knight", min: 3 },
+      { name: "Emerald Champion", min: 4 },
+      { name: "Living Legend", min: 5 }
+    ];
+
+    const STORAGE_KEY = "rdq-strain-passport";
+    const ID_KEY = "rdq-traveler-id";
+
+    function randomTravelerId() {
+      const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+      let out = "Traveler ";
+      for (let i = 0; i < 6; i++) {
+        out += chars[Math.floor(Math.random() * chars.length)];
+      }
+      return out;
+    }
+
+    function getTravelerId() {
+      let id = localStorage.getItem(ID_KEY);
+      if (!id) {
+        id = randomTravelerId();
+        localStorage.setItem(ID_KEY, id);
+      }
+      return id;
+    }
+
+    function getPassport() {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return [];
+      try {
+        return JSON.parse(raw);
+      } catch {
+        return [];
+      }
+    }
+
+    function savePassport(items) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+    }
+
+    function toggleStrain(id) {
+      const current = getPassport();
+      const exists = current.includes(id);
+      const next = exists ? current.filter(x => x !== id) : [...current, id];
+      savePassport(next);
+      render();
+    }
+
+    function resetPassport() {
+      localStorage.removeItem(STORAGE_KEY);
+      render();
+    }
+
+    function getCollectedStrains() {
+      const passport = getPassport();
+      return strains.filter(s => passport.includes(s.id));
+    }
+
+    function getCurrentRank(count) {
+      let current = ranks[0];
+      for (const rank of ranks) {
+        if (count >= rank.min) current = rank;
+      }
+      return current;
+    }
+
+    function getNextRank(count) {
+      return ranks.find(r => r.min > count) || null;
+    }
+
+    function renderStrainGrid(collectedIds) {
+      const grid = document.getElementById("strainGrid");
+      grid.innerHTML = "";
+
+      strains.forEach(strain => {
+        const isCollected = collectedIds.includes(strain.id);
+        const gradeClass = strain.grade;
+
+        const card = document.createElement("div");
+        card.className = "strain-card";
+        card.innerHTML = `
+          <h4>${strain.name}</h4>
+          <div class="strain-meta">
+            <span class="grade ${gradeClass}">${strain.grade} grade</span>
+            ${strain.branchTags.map(tag => `<span class="mini-tag">${tag}</span>`).join("")}
+          </div>
+          <p>${strain.notes}</p>
+          <div class="btn-row">
+            <button class="${isCollected ? "collected" : ""}" data-id="${strain.id}">
+              ${isCollected ? "Passport Stamp Recorded" : "Claim This Strain"}
+            </button>
+            <a class="btn-link" href="${strain.link}">Open Profile</a>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+
+      grid.querySelectorAll("button[data-id]").forEach(btn => {
+        btn.addEventListener("click", () => toggleStrain(btn.dataset.id));
+      });
+    }
+
+    function renderInventory(collected) {
+      const list = document.getElementById("inventoryList");
+      const emptyNote = document.getElementById("emptyInventoryNote");
+      list.innerHTML = "";
+
+      if (!collected.length) {
+        emptyNote.style.display = "block";
+        return;
+      }
+
+      emptyNote.style.display = "none";
+
+      collected.forEach(item => {
+        const div = document.createElement("div");
+        div.className = "inventory-item";
+        div.innerHTML = `
+          <strong>${item.name}</strong>
+          <span class="grade ${item.grade}">${item.grade} grade</span>
+          <div style="margin-top:10px; color: var(--muted); line-height:1.65;">
+            ${item.branchTags.join(" • ")}
+          </div>
+        `;
+        list.appendChild(div);
+      });
+    }
+
+    function updateBranches(collected) {
+      const branchMap = {
+        fruit: false,
+        dessert: false,
+        gas: false,
+        classic: false
+      };
+
+      collected.forEach(item => {
+        item.branchKeys.forEach(key => {
+          branchMap[key] = true;
+        });
+      });
+
+      const grades = new Set(collected.map(x => x.grade));
+      const gradeUnlocked = grades.size >= 2;
+      const legendUnlocked = collected.length >= strains.length;
+
+      const setBranch = (key, unlocked, labelWhenOn) => {
+        const card = document.getElementById(`branch-${key}`);
+        const status = document.getElementById(`${key}Status`);
+        if (!card || !status) return;
+        card.classList.toggle("locked", !unlocked);
+        card.classList.toggle("unlocked", unlocked);
+        status.textContent = unlocked ? labelWhenOn : "Locked";
+      };
+
+      setBranch("fruit", branchMap.fruit, "Illuminated");
+      setBranch("dessert", branchMap.dessert, "Illuminated");
+      setBranch("gas", branchMap.gas, "Illuminated");
+      setBranch("classic", branchMap.classic, "Illuminated");
+      setBranch("grades", gradeUnlocked, "Ascending");
+      setBranch("legend", legendUnlocked, "Crowned");
+
+      const unlockedCount =
+        (branchMap.fruit ? 1 : 0) +
+        (branchMap.dessert ? 1 : 0) +
+        (branchMap.gas ? 1 : 0) +
+        (branchMap.classic ? 1 : 0) +
+        (gradeUnlocked ? 1 : 0) +
+        (legendUnlocked ? 1 : 0);
+
+      document.getElementById("heroUnlocked").textContent = unlockedCount;
+      document.getElementById("fruitStatus").textContent = branchMap.fruit ? "Illuminated" : "Visible";
+      document.getElementById("dessertStatus").textContent = branchMap.dessert ? "Illuminated" : "Locked";
+      document.getElementById("gasStatus").textContent = branchMap.gas ? "Illuminated" : "Locked";
+      document.getElementById("classicStatus").textContent = branchMap.classic ? "Illuminated" : "Locked";
+      document.getElementById("gradeStatus").textContent = gradeUnlocked ? "Ascending" : "Locked";
+      document.getElementById("legendStatus").textContent = legendUnlocked ? "Crowned" : "Locked";
+    }
+
+    function render() {
+      const traveler = getTravelerId();
+      const collectedIds = getPassport();
+      const collected = getCollectedStrains();
+      const count = collected.length;
+      const currentRank = getCurrentRank(count);
+      const nextRank = getNextRank(count);
+
+      const branches = new Set();
+      collected.forEach(item => item.branchTags.forEach(tag => branches.add(tag)));
+      const gradeLevels = new Set(collected.map(x => x.grade));
+
+      document.getElementById("travelerName").textContent = traveler;
+      document.getElementById("rankBadge").textContent = currentRank.name;
+      document.getElementById("heroRank").textContent = currentRank.name;
+      document.getElementById("heroCollected").textContent = count;
+      document.getElementById("passportCount").textContent = `${count} Passport Stamp${count === 1 ? "" : "s"}`;
+      document.getElementById("flavorCount").textContent = `${branches.size} Flavor Branch${branches.size === 1 ? "" : "es"}`;
+      document.getElementById("gradeCount").textContent = `${gradeLevels.size} Grade Level${gradeLevels.size === 1 ? "" : "s"}`;
+
+      const totalPossible = strains.length;
+      const overallPercent = Math.round((count / totalPossible) * 100);
+      document.getElementById("progressFill").style.width = `${overallPercent}%`;
+
+      if (nextRank) {
+        const currentFloor = currentRank.min;
+        const nextFloor = nextRank.min;
+        const localProgress = Math.max(0, count - currentFloor);
+        const needed = Math.max(1, nextFloor - currentFloor);
+        const localPercent = Math.round((localProgress / needed) * 100);
+        document.getElementById("progressText").textContent = `${localPercent}% toward next title`;
+        document.getElementById("nextRankText").textContent = `Next rank: ${nextRank.name}`;
+      } else {
+        document.getElementById("progressText").textContent = `100% complete — your legend is active`;
+        document.getElementById("nextRankText").textContent = `Final rank achieved`;
+      }
+
+      renderStrainGrid(collectedIds);
+      renderInventory(collected);
+      updateBranches(collected);
+    }
+
+    document.getElementById("resetPassport").addEventListener("click", () => {
+      const ok = confirm("Reset this device's passport progress?");
+      if (ok) resetPassport();
+    });
+
+    render();
+  </script>
+</body>
+</html>
