@@ -2,8 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="noindex, nofollow">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="robots"
+    content="noindex, nofollow"
+  >
 
   <title>What If 601 | RD Quarters</title>
 
@@ -97,6 +105,44 @@
       padding: 45px 0 80px;
     }
 
+    .traveler {
+      background:
+        linear-gradient(
+          145deg,
+          rgba(221, 178, 76, 0.09),
+          transparent 55%
+        ),
+        var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 22px;
+      margin-bottom: 24px;
+    }
+
+    .traveler-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .traveler h2 {
+      color: var(--light);
+      margin: 7px 0;
+    }
+
+    .traveler p {
+      color: var(--muted);
+    }
+
+    .traveler-id {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 9px 13px;
+      color: var(--gold);
+    }
+
     .art {
       background: var(--panel);
       border: 1px solid var(--border);
@@ -134,10 +180,15 @@
 
     .card p {
       color: var(--muted);
+      margin-bottom: 12px;
     }
 
     .full {
       margin-top: 20px;
+    }
+
+    .author-note {
+      border-left: 4px solid var(--gold);
     }
 
     .token {
@@ -182,6 +233,29 @@
         var(--gold),
         var(--light)
       );
+    }
+
+    .qr-box {
+      width: 180px;
+      height: 180px;
+      border: 2px dashed var(--border);
+      border-radius: 20px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      color: var(--muted);
+      margin-top: 18px;
+      padding: 18px;
+    }
+
+    .portal-url {
+      margin-top: 18px;
+      padding: 12px;
+      background: #090805;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      color: var(--gold);
+      overflow-wrap: anywhere;
     }
 
     footer {
@@ -229,12 +303,121 @@
 
   <main>
 
+    <section class="traveler">
+      <div class="traveler-row">
+
+        <div>
+          <p class="label">Anonymous Traveler Profile</p>
+          <h2 id="traveler-name">Creating Traveler...</h2>
+
+          <p>
+            Your visit, token and maze progress are saved privately
+            on this device without requiring personal information.
+          </p>
+        </div>
+
+        <div class="traveler-id" id="traveler-id">
+          Loading ID
+        </div>
+
+      </div>
+
+      <div class="progress">
+        <div id="traveler-progress"></div>
+      </div>
+
+      <span class="status" id="traveler-status">
+        Saving Progress
+      </span>
+    </section>
+
     <section class="art">
       <img
         src="../what-if-601.PNG"
         alt="What If 601 — The Weight of Thought"
       >
     </section>
+
+    <article class="card full author-note">
+      <p class="label">Note from the Author</p>
+
+      <h2>The Meaning Behind What If 601</h2>
+
+      <p>
+        This What If takes a look at the weight of thoughts.
+      </p>
+
+      <p>
+        It opens with a play on phonics and layered meaning. We see
+        “wait,” which carries the connotation of holding, pausing and
+        thoughts moving at a certain speed. It is also a double entendre
+        pointing to the weight of thoughts—the heaviness they can carry—
+        but also the speed at which some minds operate.
+      </p>
+
+      <p>
+        This leads into the second line: “you could not pay cent,”
+        phonetically landing on the sound of the word “patient.”
+        This connects the speed of mind with the difficulty of being
+        patient with thoughts.
+      </p>
+
+      <p>
+        It also plays on monetary value through the phrase
+        “a penny for your thoughts.” The thoughts may come so quickly,
+        or carry such complexity, that we cannot simply pay cent for them
+        or easily explain them.
+      </p>
+
+      <p>
+        The latter half says, “would fee bell or prow is ships heading.”
+        “Fee bell” contains the hidden phonics of “feeble,” while also
+        continuing the fee and pay-cent theme.
+      </p>
+
+      <p>
+        “Prow is” becomes a phonetic doorway into “prowess,” while also
+        literally pointing toward the prow of a ship. The prow symbolizes
+        force, direction and the leading edge of movement.
+      </p>
+
+      <p>
+        This connects to the heading of the ship, while also relating
+        to the head as the place of thought, direction and mental clarity.
+      </p>
+
+      <p>
+        Summed up, this What If explores the weight and speed of thought,
+        the difficulty of bearing or explaining it, and the choice between
+        becoming feeble under its pressure or using mental force with
+        prowess to cut a clear course through the waters of the mind.
+      </p>
+    </article>
+
+    <article class="card full">
+      <p class="label">Expanded Interpretation</p>
+
+      <h2>Directing the Force of Thought</h2>
+
+      <p>
+        Thoughts can create real emotional and physical pressure even
+        when their content has not become reality. A fast-moving mind
+        may struggle to pause long enough to evaluate each thought before
+        the next one arrives.
+      </p>
+
+      <p>
+        The artwork transforms mental weight into navigational force.
+        The same energy that once pulled downward becomes the power used
+        to drive the vessel forward.
+      </p>
+
+      <p>
+        The ship does not eliminate the storm. It develops a heading.
+        The prow does not deny resistance. It divides the resistance
+        and creates a route through it.
+      </p>
+    </article>
 
     <section class="grid">
 
@@ -246,9 +429,9 @@
         </h2>
 
         <p>
-          The question plays with wait and weight, pay cent and patient,
-          fee bell and feeble. Thoughts can feel heavy enough to depress
-          the mind, but they do not have to determine its course.
+          A thought can feel powerful without being a command, prophecy
+          or permanent truth. Awareness creates space between experiencing
+          the thought and obeying its direction.
         </p>
       </article>
 
@@ -264,8 +447,8 @@
           instead of allowing oppressive thoughts to steer the vessel.
         </p>
 
-        <span class="status">
-          Token Available
+        <span class="status" id="token-status">
+          Token Collected
         </span>
       </article>
 
@@ -300,8 +483,8 @@
       <h2>The Course-Clearing Pathway</h2>
 
       <p>
-        Understanding this portal begins illuminating the route between
-        emotional pressure and deliberate mental direction.
+        Understanding this portal illuminates the route between emotional
+        pressure and deliberate mental direction.
       </p>
 
       <div class="progress">
@@ -314,16 +497,61 @@
     </article>
 
     <article class="card full">
-      <p class="label">Hidden Lore</p>
+      <p class="label">Hidden Phonics Codex</p>
 
-      <h2>The Bell, the Patient and the Prow</h2>
+      <h2>Words Concealed Within the Question</h2>
 
       <p>
-        The bell represents the alarm of recurring thoughts. Patient
-        represents both endurance and the person seeking healing.
-        The prow represents strength at the front of the vessel, cutting
-        through resistance while keeping the ship aligned with its course.
+        <strong>Wait / Weight:</strong>
+        speed, delay, pressure and mental heaviness.
       </p>
+
+      <p>
+        <strong>Pay Cent / Patient:</strong>
+        difficulty slowing the mind and being patient with thoughts.
+      </p>
+
+      <p>
+        <strong>Penny for Your Thoughts:</strong>
+        the attempt to assign value or explanation to inner experience.
+      </p>
+
+      <p>
+        <strong>Fee Bell / Feeble:</strong>
+        mental pressure becoming weakness while preserving the financial
+        language of fee and payment.
+      </p>
+
+      <p>
+        <strong>Prow Is / Prowess:</strong>
+        strength expressed through the forward edge of the ship.
+      </p>
+
+      <p>
+        <strong>Heading / Head:</strong>
+        the ship’s direction and the mind’s center of thought and clarity.
+      </p>
+    </article>
+
+    <article class="card full">
+      <p class="label">QR Portal Mark</p>
+
+      <h2>Permanent Digital Destination</h2>
+
+      <p>
+        The finished merchandise and numbered artwork edition can carry
+        a discreet QR portal mark linking directly to this page.
+      </p>
+
+      <div class="qr-box">
+        QR 601
+        <br>
+        Artwork version pending
+      </div>
+
+      <div class="portal-url">
+        https://rdquarters.com/portals/what-if-601.html
+      </div>
     </article>
 
     <article class="card full">
@@ -333,8 +561,8 @@
 
       <p>
         This number remains connected to the master list, artwork,
-        certificate of authenticity, apparel identity, website portal
-        and Knowledge Maze record.
+        certificate of authenticity, apparel identity, website portal,
+        author note, QR destination and Knowledge Maze record.
       </p>
 
       <span class="status">
@@ -346,9 +574,85 @@
 
   <footer>
     <div class="rd">RD 601</div>
-    <p>The Weight of Thought · What If Art Series</p>
-    <p>© 2026 RD Quarters. All rights reserved.</p>
+
+    <p>
+      The Weight of Thought · What If Art Series
+    </p>
+
+    <p>
+      © 2026 RD Quarters. All rights reserved.
+    </p>
   </footer>
+
+  <script>
+    const storageKey = "rdQuartersTraveler";
+
+    function createTravelerId() {
+      const characters = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+      let code = "";
+
+      for (let i = 0; i < 6; i++) {
+        code += characters.charAt(
+          Math.floor(Math.random() * characters.length)
+        );
+      }
+
+      return "Traveler " + code;
+    }
+
+    let traveler;
+
+    try {
+      traveler = JSON.parse(localStorage.getItem(storageKey));
+    } catch (error) {
+      traveler = null;
+    }
+
+    if (!traveler) {
+      traveler = {
+        id: createTravelerId(),
+        visitedPortals: [],
+        tokens: [],
+        illumination: 0,
+        lastVisit: ""
+      };
+    }
+
+    if (!traveler.visitedPortals.includes("601")) {
+      traveler.visitedPortals.push("601");
+    }
+
+    if (!traveler.tokens.includes("golden-prow-601")) {
+      traveler.tokens.push("golden-prow-601");
+    }
+
+    traveler.illumination = Math.max(
+      Number(traveler.illumination) || 0,
+      12
+    );
+
+    traveler.lastVisit = new Date().toISOString();
+
+    localStorage.setItem(
+      storageKey,
+      JSON.stringify(traveler)
+    );
+
+    document.getElementById("traveler-name").textContent =
+      traveler.id;
+
+    document.getElementById("traveler-id").textContent =
+      "Portal 601 Recorded";
+
+    document.getElementById("traveler-status").textContent =
+      traveler.tokens.length +
+      " token saved · " +
+      traveler.illumination +
+      "% illuminated";
+
+    document.getElementById("traveler-progress").style.width =
+      traveler.illumination + "%";
+  </script>
 
 </body>
 </html>
