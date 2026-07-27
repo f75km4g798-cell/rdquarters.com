@@ -2,20 +2,26 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>What If Anthology | RD Quarters</title>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>What-If Art Library | RD Quarters</title>
 
   <style>
     :root {
-      --black: #070706;
-      --dark: #121009;
-      --panel: #19150d;
+      --black: #050504;
+      --panel: #17130c;
+      --panel-soft: #1d170d;
       --gold: #ddb24c;
-      --light-gold: #f2d487;
+      --light: #f2d487;
       --cream: #f3e7c9;
-      --muted: #baab88;
-      --border: rgba(221, 178, 76, 0.55);
+      --muted: #aa9b7c;
+      --border: rgba(221, 178, 76, 0.48);
+      --dim: rgba(221, 178, 76, 0.2);
+      --locked: rgba(169, 155, 124, 0.45);
     }
 
     * {
@@ -29,12 +35,19 @@
     }
 
     body {
+      min-height: 100vh;
+
       background:
-        radial-gradient(circle at top, rgba(221, 178, 76, 0.12), transparent 32rem),
+        radial-gradient(
+          circle at 50% 0%,
+          rgba(221, 178, 76, 0.15),
+          transparent 34rem
+        ),
         var(--black);
+
       color: var(--cream);
       font-family: Georgia, "Times New Roman", serif;
-      line-height: 1.6;
+      line-height: 1.65;
     }
 
     a {
@@ -42,252 +55,501 @@
       text-decoration: none;
     }
 
-    .site-header {
+    header {
       position: sticky;
       top: 0;
-      z-index: 10;
-      background: rgba(7, 7, 6, 0.94);
-      backdrop-filter: blur(12px);
+      z-index: 20;
+
+      background: rgba(5, 5, 4, 0.96);
       border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(10px);
     }
 
     .header-inner {
-      max-width: 1100px;
+      width: min(1120px, calc(100% - 36px));
       margin: auto;
-      padding: 15px 22px;
+      padding: 16px 0;
+
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 20px;
+      gap: 15px;
     }
 
     .brand {
       color: var(--gold);
-      font-size: 1.15rem;
       font-weight: bold;
       letter-spacing: 0.18em;
+      white-space: nowrap;
     }
 
-    .home-link {
-      color: var(--cream);
-      border: 1px solid var(--border);
+    .header-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    .header-link {
+      border: 1px solid var(--dim);
       border-radius: 999px;
-      padding: 8px 15px;
-      font-size: 0.9rem;
+      padding: 8px 12px;
+      font-size: 0.84rem;
     }
 
     .hero {
-      min-height: 78vh;
-      padding: 85px 24px 70px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      min-height: 610px;
+      padding: 85px 22px 65px;
+
+      display: grid;
+      place-items: center;
       text-align: center;
+
       border-bottom: 1px solid var(--border);
+
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(221, 178, 76, 0.13),
+          transparent 28rem
+        );
     }
 
     .hero-inner {
-      max-width: 800px;
+      max-width: 900px;
     }
 
-    .symbol {
-      width: 78px;
-      height: 78px;
-      margin: 0 auto 28px;
-      border: 2px solid var(--gold);
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      color: var(--gold);
-      font-size: 2.1rem;
-      box-shadow: 0 0 40px rgba(221, 178, 76, 0.15);
-    }
-
-    .eyebrow {
+    .label {
       color: var(--gold);
       text-transform: uppercase;
-      letter-spacing: 0.3em;
-      font-size: 0.78rem;
-      margin-bottom: 18px;
+      letter-spacing: 0.24em;
+      font-size: 0.74rem;
     }
 
     h1 {
-      color: var(--light-gold);
-      font-size: clamp(3rem, 12vw, 6.5rem);
-      line-height: 0.96;
-      letter-spacing: -0.03em;
-      margin-bottom: 28px;
+      color: var(--light);
+      font-size: clamp(3.2rem, 13vw, 7.2rem);
+      line-height: 0.92;
+      margin: 20px 0 24px;
     }
 
     .hero-description {
-      max-width: 660px;
+      max-width: 800px;
       margin: auto;
-      color: var(--cream);
-      font-size: clamp(1.05rem, 4.4vw, 1.45rem);
+      color: var(--muted);
+      font-size: 1.08rem;
     }
 
-    .hero-buttons {
-      margin-top: 36px;
+    .hero-actions {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 14px;
+      gap: 12px;
+      margin-top: 28px;
     }
 
     .button {
-      border: 1px solid var(--gold);
+      display: inline-block;
+      border: 1px solid var(--border);
       border-radius: 999px;
-      padding: 13px 22px;
-      font-weight: bold;
-      transition: 0.2s ease;
+      padding: 10px 16px;
+      color: var(--gold);
     }
 
     .button.primary {
       background: var(--gold);
       color: #090805;
-    }
-
-    .button.secondary {
-      color: var(--light-gold);
-    }
-
-    .section {
-      max-width: 1100px;
-      margin: auto;
-      padding: 75px 24px;
-    }
-
-    .section-label {
-      color: var(--gold);
-      text-transform: uppercase;
-      letter-spacing: 0.24em;
-      font-size: 0.75rem;
-      margin-bottom: 12px;
-    }
-
-    h2 {
-      color: var(--light-gold);
-      font-size: clamp(2rem, 7vw, 3.6rem);
-      line-height: 1.05;
-      margin-bottom: 22px;
-    }
-
-    .section-intro {
-      max-width: 720px;
-      color: var(--muted);
-      font-size: 1.08rem;
-      margin-bottom: 38px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
-    }
-
-    .card {
-      min-height: 300px;
-      padding: 30px;
-      background:
-        linear-gradient(145deg, rgba(221, 178, 76, 0.08), transparent 48%),
-        var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .card-number {
-      color: var(--gold);
-      font-size: 0.78rem;
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-    }
-
-    .card h3 {
-      color: var(--light-gold);
-      font-size: 1.8rem;
-      line-height: 1.1;
-      margin: 22px 0 14px;
-    }
-
-    .card p {
-      color: var(--muted);
-    }
-
-    .card-link {
-      display: inline-block;
-      margin-top: 30px;
-      color: var(--gold);
       font-weight: bold;
     }
 
-    .search-panel {
-      padding: 36px;
+    main {
+      width: min(1080px, calc(100% - 40px));
+      margin: auto;
+      padding: 50px 0 86px;
+    }
+
+    .library-intro {
+      padding: 26px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(221, 178, 76, 0.09),
+          transparent 55%
+        ),
+        var(--panel);
+
       border: 1px solid var(--border);
       border-radius: 24px;
-      background: var(--dark);
+      margin-bottom: 30px;
     }
 
-    .search-panel input {
-      width: 100%;
-      margin-top: 18px;
-      padding: 16px 18px;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      background: #080806;
-      color: var(--cream);
-      font-family: inherit;
-      font-size: 1rem;
+    .library-intro h2 {
+      color: var(--light);
+      font-size: 2rem;
+      margin: 8px 0 12px;
     }
 
-    .gateway {
-      margin: 0 24px 75px;
-      padding: 60px 28px;
+    .library-intro p {
+      color: var(--muted);
+    }
+
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+
+    .filter {
+      border: 1px solid var(--dim);
+      border-radius: 999px;
+      padding: 8px 13px;
+      color: var(--muted);
+      background: rgba(221, 178, 76, 0.03);
+    }
+
+    .filter.active {
+      color: var(--gold);
+      border-color: var(--border);
+      background: rgba(221, 178, 76, 0.08);
+    }
+
+    .featured {
+      display: grid;
+      grid-template-columns: 1.06fr 0.94fr;
+      gap: 24px;
+
+      padding: 16px;
+      margin-bottom: 42px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(221, 178, 76, 0.1),
+          transparent 58%
+        ),
+        var(--panel);
+
       border: 1px solid var(--border);
       border-radius: 28px;
+    }
+
+    .featured-image {
+      border: 1px solid var(--dim);
+      border-radius: 20px;
+      overflow: hidden;
+      background: #080805;
+    }
+
+    .featured-image img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-height: 470px;
+      object-fit: cover;
+    }
+
+    .featured-copy {
+      padding: 26px 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .number-badge {
+      width: 72px;
+      height: 72px;
+
+      display: grid;
+      place-items: center;
+
+      border: 1px solid var(--border);
+      border-radius: 50%;
+
+      color: var(--gold);
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 18px;
+    }
+
+    .featured-copy h2 {
+      color: var(--light);
+      font-size: clamp(2.25rem, 7vw, 3.7rem);
+      line-height: 1;
+      margin-bottom: 17px;
+    }
+
+    .question {
+      color: var(--cream);
+      font-size: 1.04rem;
+      margin-bottom: 18px;
+    }
+
+    .featured-copy p {
+      color: var(--muted);
+    }
+
+    .feature-list {
+      display: grid;
+      gap: 10px;
+      margin: 21px 0;
+    }
+
+    .feature-item {
+      padding: 11px 13px;
+      border: 1px solid var(--dim);
+      border-radius: 14px;
+      color: var(--muted);
+    }
+
+    .feature-item strong {
+      color: var(--light);
+    }
+
+    .featured-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 11px;
+      margin-top: 5px;
+    }
+
+    .section-heading {
+      margin: 46px 0 22px;
+    }
+
+    .section-heading h2 {
+      color: var(--light);
+      font-size: clamp(2.1rem, 7vw, 3.3rem);
+      line-height: 1.05;
+      margin: 9px 0 12px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      max-width: 760px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 21px;
+    }
+
+    .art-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 430px;
+
       background:
-        radial-gradient(circle at center, rgba(221, 178, 76, 0.14), transparent 65%),
-        var(--dark);
+        linear-gradient(
+          145deg,
+          rgba(221, 178, 76, 0.07),
+          transparent 55%
+        ),
+        var(--panel);
+
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      overflow: hidden;
+    }
+
+    .art-preview {
+      min-height: 220px;
+      display: grid;
+      place-items: center;
+
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(221, 178, 76, 0.11),
+          transparent 13rem
+        ),
+        #090805;
+
+      border-bottom: 1px solid var(--dim);
+    }
+
+    .art-preview img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-height: 220px;
+      object-fit: cover;
+    }
+
+    .placeholder-mark {
+      width: 110px;
+      height: 110px;
+
+      display: grid;
+      place-items: center;
+      text-align: center;
+
+      border: 1px solid var(--locked);
+      border-radius: 50%;
+
+      color: var(--muted);
+    }
+
+    .placeholder-mark strong {
+      display: block;
+      font-size: 1.4rem;
+    }
+
+    .placeholder-mark span {
+      display: block;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .art-card-copy {
+      padding: 23px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .art-number {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.76rem;
+    }
+
+    .art-card h3 {
+      color: var(--light);
+      font-size: 1.7rem;
+      line-height: 1.1;
+      margin: 9px 0 11px;
+    }
+
+    .art-card p {
+      color: var(--muted);
+    }
+
+    .status-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 17px 0;
+    }
+
+    .status {
+      border: 1px solid var(--dim);
+      border-radius: 999px;
+      padding: 6px 9px;
+      color: var(--muted);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .status.live {
+      color: var(--gold);
+      border-color: var(--border);
+    }
+
+    .art-card .button {
+      align-self: flex-start;
+      margin-top: auto;
+    }
+
+    .locked-card {
+      opacity: 0.7;
+    }
+
+    .connected {
+      margin-top: 50px;
+      padding: 28px;
+
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(221, 178, 76, 0.09),
+          transparent 25rem
+        ),
+        #090805;
+
+      border: 1px solid var(--border);
+      border-radius: 28px;
       text-align: center;
     }
 
-    .gateway-inner {
-      max-width: 760px;
+    .connected h2 {
+      color: var(--light);
+      font-size: clamp(2rem, 7vw, 3.2rem);
+      margin: 9px 0 14px;
+    }
+
+    .connected p {
+      color: var(--muted);
+      max-width: 790px;
       margin: auto;
     }
 
-    .gateway p {
-      color: var(--muted);
-      margin: 18px auto 30px;
+    .connected-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 23px;
     }
 
     footer {
-      padding: 40px 24px 55px;
       border-top: 1px solid var(--border);
       text-align: center;
       color: var(--muted);
+      padding: 40px 20px 50px;
     }
 
     .rd {
       color: var(--gold);
       font-size: 1.8rem;
       font-weight: bold;
-      letter-spacing: 0.22em;
+      letter-spacing: 0.2em;
     }
 
-    @media (max-width: 800px) {
-      .grid {
-        grid-template-columns: 1fr;
+    @media (max-width: 780px) {
+      .header-inner {
+        align-items: flex-start;
+      }
+
+      .header-links {
+        max-width: 190px;
       }
 
       .hero {
-        min-height: 72vh;
+        min-height: 560px;
       }
 
-      .card {
-        min-height: 255px;
+      .featured,
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .featured-image img {
+        min-height: auto;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .header-inner {
+        width: min(100% - 24px, 1120px);
+      }
+
+      .brand {
+        font-size: 0.92rem;
+      }
+
+      .header-link {
+        padding: 7px 10px;
+        font-size: 0.76rem;
+      }
+
+      main {
+        width: min(100% - 26px, 1080px);
       }
     }
   </style>
@@ -295,127 +557,446 @@
 
 <body>
 
-  <header class="site-header">
+  <header>
     <div class="header-inner">
-      <div class="brand">RD QUARTERS</div>
-      <a class="home-link" href="index.html">Return Home</a>
+
+      <a class="brand" href="index.html">
+        RD QUARTERS
+      </a>
+
+      <div class="header-links">
+        <a class="header-link" href="index.html">
+          Home
+        </a>
+
+        <a class="header-link" href="apparel.html">
+          Apparel
+        </a>
+
+        <a class="header-link" href="knowledge-maze.html">
+          Knowledge Maze
+        </a>
+      </div>
+
     </div>
   </header>
 
+  <section class="hero">
+
+    <div class="hero-inner">
+
+      <p class="label">
+        Numbered Philosophical Artwork
+      </p>
+
+      <h1>What-If Art Library</h1>
+
+      <p class="hero-description">
+        A growing archive of symbolic artwork built from philosophical
+        questions, hidden phonics, double meanings, personal author notes
+        and connected pathways through the RD Quarters Knowledge Maze.
+      </p>
+
+      <div class="hero-actions">
+
+        <a
+          class="button primary"
+          href="portals/what-if-601.html"
+        >
+          Enter What If 601
+        </a>
+
+        <a
+          class="button"
+          href="#library"
+        >
+          Browse Library
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
   <main>
 
-    <section class="hero">
-      <div class="hero-inner">
-        <div class="symbol">?</div>
+    <section class="library-intro">
 
-        <p class="eyebrow">The Numbered Anthology</p>
+      <p class="label">
+        Permanent Series Record
+      </p>
 
-        <h1>What If?</h1>
+      <h2>Every Piece Keeps Its Number</h2>
 
-        <p class="hero-description">
-          A continuing collection of visual questions combining wordplay,
-          symbolism, philosophy, hidden language and imagination.
+      <p>
+        Each What If receives one permanent master-list number that stays
+        connected to its artwork, exact wording, Author’s Note, hidden
+        phonics, Neural Atlas lesson, QR portal, apparel edition and future
+        certificate record.
+      </p>
+
+    </section>
+
+    <div class="filter-row" aria-label="Future art filters">
+      <span class="filter active">All Artwork</span>
+      <span class="filter">Mind</span>
+      <span class="filter">Science</span>
+      <span class="filter">Spirit</span>
+      <span class="filter">Language</span>
+      <span class="filter">Reality</span>
+    </div>
+
+    <section class="featured">
+
+      <div class="featured-image">
+
+        <a href="portals/what-if-601.html">
+          <img
+            src="what-if-601.PNG"
+            alt="What If 601 — The Weight of Thought"
+          >
+        </a>
+
+      </div>
+
+      <div class="featured-copy">
+
+        <div class="number-badge">
+          601
+        </div>
+
+        <p class="label">
+          Published Portal
         </p>
 
-        <div class="hero-buttons">
-          <a class="button primary" href="#gallery">Enter the Gallery</a>
-          <a class="button secondary" href="#meaning">Behind the Meaning</a>
-        </div>
-      </div>
-    </section>
+        <h2>The Weight of Thought</h2>
 
-    <section class="section" id="gallery">
-      <p class="section-label">The Archive</p>
-      <h2>Enter Through a Question</h2>
-
-      <p class="section-intro">
-        Every creation belongs to a numbered series. Each doorway will eventually
-        reveal the artwork, original question, symbolism, story and related apparel.
-      </p>
-
-      <div class="grid">
-
-        <article class="card">
-          <div>
-            <p class="card-number">Featured Portal 001</p>
-            <h3>The Original Question</h3>
-            <p>
-              Explore the words, hidden phonics and visual language that gave birth
-              to each piece.
-            </p>
-          </div>
-          <span class="card-link">Gallery expanding soon →</span>
-        </article>
-
-        <article class="card">
-          <div>
-            <p class="card-number">Featured Portal 002</p>
-            <h3>Behind the Image</h3>
-            <p>
-              Discover the symbols, historical references and layered meanings
-              placed inside the artwork.
-            </p>
-          </div>
-          <span class="card-link">Meaning archive coming soon →</span>
-        </article>
-
-        <article class="card">
-          <div>
-            <p class="card-number">Featured Portal 003</p>
-            <h3>Wear the Question</h3>
-            <p>
-              Numbered apparel and limited designs will connect physical pieces
-              directly to their digital doorway.
-            </p>
-          </div>
-          <span class="card-link">Apparel gateway coming soon →</span>
-        </article>
-
-      </div>
-    </section>
-
-    <section class="section" id="meaning">
-      <p class="section-label">Series Navigation</p>
-      <h2>Search by Number</h2>
-
-      <p class="section-intro">
-        Soon, entering the number printed on an artwork, shirt or certificate will
-        open its individual page inside the RD Quarters universe.
-      </p>
-
-      <div class="search-panel">
-        <label for="series-number">Enter a What If series number</label>
-
-        <input
-          id="series-number"
-          type="text"
-          inputmode="numeric"
-          placeholder="Example: 137"
-          disabled
-        >
-      </div>
-    </section>
-
-    <section class="gateway">
-      <div class="gateway-inner">
-        <p class="section-label">QR Gateway</p>
-        <h2>Every Piece Becomes a Portal</h2>
+        <p class="question">
+          What if thoughts had a wait you could not pay cent,
+          would fee bell or prow is ships heading?
+        </p>
 
         <p>
-          Future What If apparel, prints and certificates will carry a gateway
-          leading to the story behind that exact numbered creation.
+          A meditation on the speed and weight of thought, the hidden
+          phonics of patience and feebleness, and the choice to direct
+          mental force with the prowess of a ship’s prow.
         </p>
 
-        <a class="button primary" href="index.html">Return to RD Quarters</a>
+        <div class="feature-list">
+
+          <div class="feature-item">
+            <strong>Author’s Note:</strong>
+            complete phonetic and symbolic explanation.
+          </div>
+
+          <div class="feature-item">
+            <strong>Neural Pathway:</strong>
+            prefrontal–amygdala regulation.
+          </div>
+
+          <div class="feature-item">
+            <strong>Featured Transmitter:</strong>
+            glutamate.
+          </div>
+
+          <div class="feature-item">
+            <strong>Artifact Earned:</strong>
+            the Golden Prow.
+          </div>
+
+        </div>
+
+        <div class="featured-actions">
+
+          <a
+            class="button primary"
+            href="portals/what-if-601.html"
+          >
+            Open Complete Portal
+          </a>
+
+          <a
+            class="button"
+            href="neural-atlas.html"
+          >
+            View Neural Atlas
+          </a>
+
+        </div>
+
       </div>
+
+    </section>
+
+    <section id="library">
+
+      <div class="section-heading">
+
+        <p class="label">
+          Numbered Collection
+        </p>
+
+        <h2>The Library Is Beginning</h2>
+
+        <p>
+          What If 601 establishes the full publishing format. New pieces
+          will fill the open positions below as their artwork, Author’s
+          Notes and portal records are completed.
+        </p>
+
+      </div>
+
+      <div class="gallery">
+
+        <article class="art-card">
+
+          <div class="art-preview">
+
+            <a href="portals/what-if-601.html">
+              <img
+                src="what-if-601.PNG"
+                alt="What If 601 artwork"
+              >
+            </a>
+
+          </div>
+
+          <div class="art-card-copy">
+
+            <p class="art-number">
+              What If 601
+            </p>
+
+            <h3>The Weight of Thought</h3>
+
+            <p>
+              Thoughts become weight, patience becomes pay-cent,
+              feebleness meets prowess, and the mind becomes a vessel
+              choosing its heading.
+            </p>
+
+            <div class="status-row">
+              <span class="status live">Published</span>
+              <span class="status live">Author Note</span>
+              <span class="status live">Neural Token</span>
+              <span class="status">Apparel Pending</span>
+            </div>
+
+            <a
+              class="button"
+              href="portals/what-if-601.html"
+            >
+              Enter Portal 601
+            </a>
+
+          </div>
+
+        </article>
+
+        <article class="art-card locked-card">
+
+          <div class="art-preview">
+            <div class="placeholder-mark">
+              <div>
+                <strong>602</strong>
+                <span>Developing</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="art-card-copy">
+
+            <p class="art-number">
+              What If 602
+            </p>
+
+            <h3>Portal Under Construction</h3>
+
+            <p>
+              This numbered position is reserved for its finished artwork,
+              Author’s Note, neural signature, token and permanent portal.
+            </p>
+
+            <div class="status-row">
+              <span class="status">Reserved</span>
+              <span class="status">Artwork Pending</span>
+            </div>
+
+            <span class="button">
+              Coming Soon
+            </span>
+
+          </div>
+
+        </article>
+
+        <article class="art-card locked-card">
+
+          <div class="art-preview">
+            <div class="placeholder-mark">
+              <div>
+                <strong>603</strong>
+                <span>Developing</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="art-card-copy">
+
+            <p class="art-number">
+              What If 603
+            </p>
+
+            <h3>Portal Under Construction</h3>
+
+            <p>
+              This space will connect its artwork to a new lesson,
+              brain pathway, Knowledge Maze token and apparel identity.
+            </p>
+
+            <div class="status-row">
+              <span class="status">Reserved</span>
+              <span class="status">Portal Pending</span>
+            </div>
+
+            <span class="button">
+              Coming Soon
+            </span>
+
+          </div>
+
+        </article>
+
+        <article class="art-card locked-card">
+
+          <div class="art-preview">
+            <div class="placeholder-mark">
+              <div>
+                <strong>604</strong>
+                <span>Developing</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="art-card-copy">
+
+            <p class="art-number">
+              What If 604
+            </p>
+
+            <h3>Portal Under Construction</h3>
+
+            <p>
+              Future artwork will preserve its exact question, hidden
+              language, Author’s Note and symbolic knowledge reward.
+            </p>
+
+            <div class="status-row">
+              <span class="status">Reserved</span>
+              <span class="status">Meaning Pending</span>
+            </div>
+
+            <span class="button">
+              Coming Soon
+            </span>
+
+          </div>
+
+        </article>
+
+        <article class="art-card locked-card">
+
+          <div class="art-preview">
+            <div class="placeholder-mark">
+              <div>
+                <strong>605</strong>
+                <span>Developing</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="art-card-copy">
+
+            <p class="art-number">
+              What If 605
+            </p>
+
+            <h3>Portal Under Construction</h3>
+
+            <p>
+              This numbered chamber will eventually join the complete
+              gallery, apparel system and personal Neural Atlas.
+            </p>
+
+            <div class="status-row">
+              <span class="status">Reserved</span>
+              <span class="status">Locked</span>
+            </div>
+
+            <span class="button">
+              Coming Soon
+            </span>
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </section>
+
+    <section class="connected">
+
+      <p class="label">
+        Connected RD Quarters System
+      </p>
+
+      <h2>Art Becomes a Living Path</h2>
+
+      <p>
+        Each finished piece can move beyond a gallery image. It becomes
+        a portal containing your Author’s Note, a knowledge lesson,
+        a neural pathway, a collectible token, an apparel edition and
+        a permanent numbered record.
+      </p>
+
+      <div class="connected-links">
+
+        <a class="button" href="apparel.html">
+          Explore Apparel
+        </a>
+
+        <a class="button" href="knowledge-maze.html">
+          Enter Knowledge Maze
+        </a>
+
+        <a class="button" href="neural-atlas.html">
+          Open Neural Atlas
+        </a>
+
+        <a class="button" href="art-lines.html">
+          View All Art Lines
+        </a>
+
+      </div>
+
     </section>
 
   </main>
 
   <footer>
+
     <div class="rd">RD</div>
-    <p>What If Anthology · RD Quarters · Hudson, New York</p>
-    <p>© 2026 RD Quarters. All rights reserved.</p>
+
+    <p>
+      What-If Art Library · RD Quarters
+    </p>
+
+    <p>
+      © 2026 RD Quarters. All rights reserved.
+    </p>
+
   </footer>
 
 </body>
