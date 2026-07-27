@@ -2,185 +2,401 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>RD Quarters</title>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>RD Quarters | Art, Knowledge and Living Systems</title>
 
   <style>
+    :root {
+      --black: #050504;
+      --panel: #17130c;
+      --gold: #ddb24c;
+      --light: #f2d487;
+      --cream: #f3e7c9;
+      --muted: #aa9b7c;
+      --border: rgba(221, 178, 76, 0.48);
+      --dim: rgba(221, 178, 76, 0.2);
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      background:
-        radial-gradient(circle at top, #2b210d 0%, #0d0d0d 38%, #000 100%);
-      color: #f4ead2;
-      font-family: Georgia, "Times New Roman", serif;
       min-height: 100vh;
+
+      background:
+        radial-gradient(
+          circle at 50% 0%,
+          rgba(221, 178, 76, 0.16),
+          transparent 34rem
+        ),
+        var(--black);
+
+      color: var(--cream);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.65;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
     header {
-      text-align: center;
-      padding: 70px 20px 45px;
-      border-bottom: 1px solid #8b6a25;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+
+      background: rgba(5, 5, 4, 0.96);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(10px);
     }
 
-    .symbol {
-      font-size: 42px;
-      color: #d7ad4b;
-      margin-bottom: 15px;
+    .header-inner {
+      width: min(1120px, calc(100% - 36px));
+      margin: auto;
+      padding: 16px 0;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand {
+      color: var(--gold);
+      font-weight: bold;
+      letter-spacing: 0.18em;
+      white-space: nowrap;
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    .nav a {
+      border: 1px solid var(--dim);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 0.84rem;
+    }
+
+    .hero {
+      min-height: 670px;
+      padding: 90px 22px 70px;
+
+      display: grid;
+      place-items: center;
+      text-align: center;
+
+      border-bottom: 1px solid var(--border);
+
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(221, 178, 76, 0.12),
+          transparent 27rem
+        );
+    }
+
+    .hero-inner {
+      max-width: 930px;
+    }
+
+    .label {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      font-size: 0.74rem;
     }
 
     h1 {
-      color: #d7ad4b;
-      font-size: clamp(42px, 12vw, 78px);
-      letter-spacing: 4px;
-      text-transform: uppercase;
+      color: var(--light);
+      font-size: clamp(3.6rem, 15vw, 8rem);
+      line-height: 0.9;
+      margin: 20px 0 26px;
     }
 
-    .tagline {
-      max-width: 700px;
-      margin: 18px auto 0;
-      color: #d8c9a5;
-      font-size: 18px;
-      line-height: 1.6;
+    .hero-description {
+      max-width: 790px;
+      margin: auto;
+      color: var(--muted);
+      font-size: 1.12rem;
     }
 
-    nav {
+    .hero-actions {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 12px;
-      padding: 24px 15px;
-      border-bottom: 1px solid #4d3b19;
-      background: rgba(0, 0, 0, 0.65);
-    }
-
-    nav a {
-      color: #f4ead2;
-      text-decoration: none;
-      border: 1px solid #9c772e;
-      padding: 11px 16px;
-      border-radius: 30px;
-      font-size: 14px;
-    }
-
-    nav a:hover {
-      background: #d7ad4b;
-      color: #000;
-    }
-
-    main {
-      width: min(1100px, 92%);
-      margin: 45px auto 70px;
-    }
-
-    .intro {
-      text-align: center;
-      margin-bottom: 45px;
-    }
-
-    .intro h2 {
-      color: #d7ad4b;
-      font-size: 32px;
-      margin-bottom: 14px;
-    }
-
-    .intro p {
-      max-width: 760px;
-      margin: auto;
-      color: #d8c9a5;
-      line-height: 1.7;
-      font-size: 17px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
-      gap: 22px;
-    }
-
-    .card {
-      min-height: 230px;
-      padding: 28px;
-      border: 1px solid #8b6a25;
-      border-radius: 14px;
-      background:
-        linear-gradient(
-          145deg,
-          rgba(45, 34, 13, 0.85),
-          rgba(8, 8, 8, 0.96)
-        );
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
-    }
-
-    .card-number {
-      color: #8f7134;
-      font-size: 13px;
-      letter-spacing: 2px;
-    }
-
-    .card h3 {
-      color: #d7ad4b;
-      font-size: 25px;
-      margin: 14px 0;
-    }
-
-    .card p {
-      color: #d8c9a5;
-      line-height: 1.6;
-      margin-bottom: 20px;
+      gap: 13px;
+      margin-top: 31px;
     }
 
     .button {
       display: inline-block;
-      color: #000;
-      background: #d7ad4b;
-      text-decoration: none;
+      border: 1px solid var(--border);
+      border-radius: 999px;
       padding: 11px 17px;
-      border-radius: 5px;
+      color: var(--gold);
+    }
+
+    .button.primary {
+      background: var(--gold);
+      color: #090805;
       font-weight: bold;
     }
 
-    .button:hover {
-      background: #f2d27a;
+    main {
+      width: min(1080px, calc(100% - 40px));
+      margin: auto;
+      padding: 52px 0 86px;
+    }
+
+    .section-heading {
+      margin-bottom: 24px;
+    }
+
+    .section-heading h2 {
+      color: var(--light);
+      font-size: clamp(2.1rem, 7vw, 3.4rem);
+      line-height: 1.05;
+      margin: 9px 0 12px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      max-width: 760px;
     }
 
     .featured {
-      margin-top: 50px;
-      padding: 35px 25px;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 24px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(221, 178, 76, 0.1),
+          transparent 58%
+        ),
+        var(--panel);
+
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 16px;
+      margin-bottom: 52px;
+    }
+
+    .featured-art {
+      border-radius: 20px;
+      overflow: hidden;
+      background: #080805;
+      border: 1px solid var(--dim);
+    }
+
+    .featured-art img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-height: 420px;
+      object-fit: cover;
+    }
+
+    .featured-copy {
+      padding: 26px 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .featured-copy h2 {
+      color: var(--light);
+      font-size: clamp(2.2rem, 7vw, 3.7rem);
+      line-height: 1;
+      margin: 10px 0 18px;
+    }
+
+    .question {
+      color: var(--cream);
+      font-size: 1.06rem;
+      margin-bottom: 18px;
+    }
+
+    .featured-copy p {
+      color: var(--muted);
+    }
+
+    .featured-actions {
+      display: flex;
+      gap: 11px;
+      flex-wrap: wrap;
+      margin-top: 23px;
+    }
+
+    .section {
+      margin-top: 52px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 21px;
+    }
+
+    .card {
+      min-height: 290px;
+      display: flex;
+      flex-direction: column;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(221, 178, 76, 0.07),
+          transparent 55%
+        ),
+        var(--panel);
+
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 25px;
+    }
+
+    .card-number {
+      width: 50px;
+      height: 50px;
+      display: grid;
+      place-items: center;
+
+      border: 1px solid var(--border);
+      border-radius: 50%;
+
+      color: var(--gold);
+      margin-bottom: 18px;
+    }
+
+    .card h3 {
+      color: var(--light);
+      font-size: 1.75rem;
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+
+    .card p {
+      color: var(--muted);
+    }
+
+    .card .button {
+      align-self: flex-start;
+      margin-top: auto;
+      padding-top: 9px;
+      padding-bottom: 9px;
+    }
+
+    .journey {
+      margin-top: 52px;
+      padding: 28px;
+
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(221, 178, 76, 0.1),
+          transparent 26rem
+        ),
+        #090805;
+
+      border: 1px solid var(--border);
+      border-radius: 28px;
       text-align: center;
-      border-top: 1px solid #8b6a25;
-      border-bottom: 1px solid #8b6a25;
     }
 
-    .featured h2 {
-      color: #d7ad4b;
-      font-size: 31px;
-      margin-bottom: 15px;
+    .journey h2 {
+      color: var(--light);
+      font-size: clamp(2rem, 7vw, 3.2rem);
+      margin: 9px 0 14px;
     }
 
-    .featured p {
-      max-width: 750px;
+    .journey p {
+      color: var(--muted);
+      max-width: 790px;
       margin: auto;
-      color: #d8c9a5;
-      line-height: 1.7;
+    }
+
+    .journey-links {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 24px;
     }
 
     footer {
+      border-top: 1px solid var(--border);
       text-align: center;
-      padding: 32px 15px;
-      color: #927e52;
-      border-top: 1px solid #4d3b19;
-      font-size: 14px;
+      color: var(--muted);
+      padding: 40px 20px 50px;
     }
 
     .rd {
-      color: #d7ad4b;
+      color: var(--gold);
+      font-size: 1.8rem;
       font-weight: bold;
-      letter-spacing: 2px;
+      letter-spacing: 0.2em;
+    }
+
+    @media (max-width: 780px) {
+      .header-inner {
+        align-items: flex-start;
+      }
+
+      .nav {
+        max-width: 190px;
+      }
+
+      .hero {
+        min-height: 590px;
+      }
+
+      .featured,
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .featured-art img {
+        min-height: auto;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .header-inner {
+        width: min(100% - 24px, 1120px);
+      }
+
+      .brand {
+        font-size: 0.92rem;
+      }
+
+      .nav a {
+        padding: 7px 10px;
+        font-size: 0.76rem;
+      }
+
+      main {
+        width: min(100% - 26px, 1080px);
+      }
     }
   </style>
 </head>
@@ -188,115 +404,278 @@
 <body>
 
   <header>
-    <div class="symbol">◉</div>
+    <div class="header-inner">
 
-    <h1>RD Quarters</h1>
+      <a class="brand" href="index.html">
+        RD QUARTERS
+      </a>
 
-    <p class="tagline">
-      Books, art, apparel, hidden history and original ideas
-      created from Hudson, New York.
-    </p>
+      <nav class="nav">
+        <a href="#art">Art</a>
+        <a href="apparel.html">Apparel</a>
+        <a href="current-strain.html">Strains</a>
+        <a href="launch-hub.html">Launch Hub</a>
+      </nav>
+
+    </div>
   </header>
 
-  <nav>
-    <a href="#books">Books</a>
-    <a href="whatif.html">What If Art</a>
-    <a href="apparel.html">Apparel</a>
-    <a href="#hudson">Hudson Classics</a>
-    <a href="#thoth">Library of Thoth</a>
-  </nav>
+  <section class="hero">
+
+    <div class="hero-inner">
+
+      <p class="label">
+        Art · Knowledge · Living Systems
+      </p>
+
+      <h1>RD Quarters</h1>
+
+      <p class="hero-description">
+        A connected universe of numbered artwork, hidden phonics,
+        author notes, apparel, product knowledge and interactive journeys
+        designed to expand how visitors encounter meaning.
+      </p>
+
+      <div class="hero-actions">
+
+        <a
+          class="button primary"
+          href="portals/what-if-601.html"
+        >
+          View Featured Artwork
+        </a>
+
+        <a
+          class="button"
+          href="whatif.html"
+        >
+          Enter What-If Series
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
 
   <main>
 
-    <section class="intro">
-      <h2>Welcome to the World of RD Quarters</h2>
+    <section class="featured" id="art">
 
-      <p>
-        This is the central home for the writing, artwork,
-        symbolism, clothing and evolving creative projects of
-        RD Quarters.
-      </p>
-    </section>
+      <div class="featured-art">
 
-    <section class="grid">
+        <a href="portals/what-if-601.html">
+          <img
+            src="what-if-601.PNG"
+            alt="What If 601 — The Weight of Thought"
+          >
+        </a>
 
-      <article class="card" id="books">
-        <div class="card-number">COLLECTION 01</div>
-        <h3>Books</h3>
+      </div>
 
-        <p>
-          Explore fiction, cultural commentary, philosophy and
-          original works written under the name RD Quarters.
+      <div class="featured-copy">
+
+        <p class="label">
+          Featured Artwork · What If 601
         </p>
 
-        <a class="button" href="#">Coming Soon</a>
-      </article>
+        <h2>The Weight of Thought</h2>
 
-      <article class="card" id="what-if">
-        <div class="card-number">COLLECTION 02</div>
-        <h3>What If Art</h3>
-
-        <p>
-          A numbered anthology combining wordplay, symbolism,
-          philosophy and visual storytelling.
+        <p class="question">
+          What if thoughts had a wait you could not pay cent,
+          would fee bell or prow is ships heading?
         </p>
 
-        <a class="button" href="whatif.html">Enter Gallery</a>
-      </article>
-
-      <article class="card" id="apparel">
-        <div class="card-number">COLLECTION 03</div>
-        <h3>Apparel</h3>
-
         <p>
-          Limited designs based on RD Quarters artwork,
-          numbered series and original concepts.
+          Enter the complete portal to view the artwork, the author’s
+          explanation of its hidden phonics, the expanded interpretation,
+          its neural pathway, Golden Prow token and permanent record.
         </p>
 
-        <a class="button" href="apparel.html">View Apparel</a>
-      </article>
+        <div class="featured-actions">
 
-      <article class="card" id="hudson">
-        <div class="card-number">COLLECTION 04</div>
-        <h3>Hudson Classics</h3>
+          <a
+            class="button primary"
+            href="portals/what-if-601.html"
+          >
+            Open Artwork Portal
+          </a>
 
-        <p>
-          A tribute to the businesses, landmarks and neighborhood
-          memories that shaped Hudson, New York.
-        </p>
+          <a
+            class="button"
+            href="whatif.html"
+          >
+            Browse the Series
+          </a>
 
-        <a class="button" href="#">Discover Hudson</a>
-      </article>
+        </div>
 
-      <article class="card" id="thoth">
-        <div class="card-number">COLLECTION 05</div>
-        <h3>Library of Thoth</h3>
-
-        <p>
-          A hidden archive of Hermetic thought, sacred symbolism,
-          ancient mysteries and deeper meanings behind the art.
-        </p>
-
-        <a class="button" href="#">Enter the Library</a>
-      </article>
+      </div>
 
     </section>
 
-    <section class="featured">
-      <h2>More Than One Medium</h2>
+    <section class="section">
+
+      <div class="section-heading">
+
+        <p class="label">
+          Explore RD Quarters
+        </p>
+
+        <h2>Choose Your Path</h2>
+
+        <p>
+          Every main area is reachable from here. Visitors can begin
+          with art, enter the learning systems, explore current strain
+          knowledge or follow the connected product and apparel projects.
+        </p>
+
+      </div>
+
+      <div class="grid">
+
+        <article class="card">
+          <div class="card-number">01</div>
+
+          <h3>What-If Art Series</h3>
+
+          <p>
+            Philosophical questions become symbolic artwork carrying
+            permanent numbers, author notes, phonetic wordplay and
+            layered meaning.
+          </p>
+
+          <a class="button" href="whatif.html">
+            Enter Art Series
+          </a>
+        </article>
+
+        <article class="card">
+          <div class="card-number">02</div>
+
+          <h3>Art Lines</h3>
+
+          <p>
+            Explore the official creative branches: What-If Art,
+            AI Creations, Lost Years of Jesus and the Science Series.
+          </p>
+
+          <a class="button" href="art-lines.html">
+            View Art Lines
+          </a>
+        </article>
+
+        <article class="card">
+          <div class="card-number">03</div>
+
+          <h3>Current Strain Profiles</h3>
+
+          <p>
+            Open educational strain profiles, current batch grades and
+            the permanent destination connected to the product QR.
+          </p>
+
+          <a class="button" href="current-strain.html">
+            View Current Profiles
+          </a>
+        </article>
+
+        <article class="card">
+          <div class="card-number">04</div>
+
+          <h3>Apparel</h3>
+
+          <p>
+            Discover artwork translated into numbered shirts, prints
+            and future editions connected to matching portal records.
+          </p>
+
+          <a class="button" href="apparel.html">
+            View Apparel
+          </a>
+        </article>
+
+        <article class="card">
+          <div class="card-number">05</div>
+
+          <h3>Launch Hub</h3>
+
+          <p>
+            Follow the connected structure tying together custom bags,
+            product QR codes, numbered artwork, apparel and certificates.
+          </p>
+
+          <a class="button" href="launch-hub.html">
+            Open Launch Hub
+          </a>
+        </article>
+
+        <article class="card">
+          <div class="card-number">06</div>
+
+          <h3>Custom Bag System</h3>
+
+          <p>
+            View the reusable Hudson and 518 packaging framework,
+            permanent product QR placement and special-edition art links.
+          </p>
+
+          <a class="button" href="custom-bags.html">
+            View Bag System
+          </a>
+        </article>
+
+      </div>
+
+    </section>
+
+    <section class="journey">
+
+      <p class="label">
+        Interactive Knowledge Journey
+      </p>
+
+      <h2>Build Your Personal Map</h2>
 
       <p>
-        RD Quarters connects books, visual art, local history,
-        apparel and symbolic storytelling into one growing body
-        of work.
+        Visitors can move beyond viewing individual pieces. The Knowledge
+        Maze reveals symbolic lessons, the Neural Atlas records illuminated
+        cognitive pathways, and the Strain Passport develops a personalized
+        Living Strain Tree.
       </p>
+
+      <div class="journey-links">
+
+        <a class="button" href="knowledge-maze.html">
+          Knowledge Maze
+        </a>
+
+        <a class="button" href="neural-atlas.html">
+          Neural Atlas
+        </a>
+
+        <a class="button" href="strain-passport.html">
+          Strain Passport
+        </a>
+
+      </div>
+
     </section>
 
   </main>
 
   <footer>
-    <span class="rd">RD</span><br><br>
-    © 2026 RD Quarters. All rights reserved.
+
+    <div class="rd">RD</div>
+
+    <p>
+      RD Quarters · Art, Knowledge and Living Systems
+    </p>
+
+    <p>
+      © 2026 RD Quarters. All rights reserved.
+    </p>
+
   </footer>
 
 </body>
